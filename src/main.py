@@ -14,3 +14,7 @@ for i, v in barcosNum.items():
 
 j1.mostrarTablero()
 ordena.mostrarTablero()
+#disparar a j1
+#feedback = j1.getDisparo()
+
+print("disparo a ", 3,2, j1.getDisparo(3,2))

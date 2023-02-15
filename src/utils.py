@@ -120,24 +120,32 @@ class Jugador:
     def mostrarImpactos(self):
         print("Tablero de impactos del jugador ", self.nombre, " \n", self.tablero_impactos,  "\n")
 
+    def todosHundidos(self):
+        return self.tablero.index("O") == 0
+
+    def barcoTocado(self):
+        return self.tablero[x,y] == "O"
+
+    def barcoHundido(x, y):
+        #funcion a desarrollar si tenemos tiempo - crear diccionario / clase barcos
+        return False
+
     def getDisparo(self, x, y):
-        #test
-        res = " "
-        funcionnoquedanbarcosqueaunnoexiste = ""#test temporal
-        barcotocado = ""
-        hundido = ""
-        #confiamos en que el jugador no dispara de nuevo en una casilla
+        
+        #TODO confiamos en que el jugador no dispara de nuevo en una casilla
         if self.tablero[x,y] == "O":
-            if funcionnoquedanbarcosqueaunnoexiste:
+            if self.todosHundidos():
                 res =  "fin de juego"
-            elif barcotocado:
+            elif self.barcoTocado(x,y):
                 res =  "X"
-            elif hundido:
+            elif self.barcoHundido(x,y):
                 res = "XX"
+         
         else:
             res =  "-"
-        print("Jugador ", self.nombre, " ", res)
-        return res
+        
+        self.setDisparo( x, y, res)
+        return res 
 
     def setDisparo(self, x, y, res):
         self.tablero_impactos[x,y] = res
