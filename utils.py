@@ -1,31 +1,21 @@
 import numpy as np
 from const import coord
-#clase jugador
+
 class Jugador:
     machine = False
     tablero = []
     tablero_impactos = []   
-    coord = {
-        "N":[-1,0],
-        "S":[1,0],
-        "E":[0,1],
-        "O":[0,-1],
-    }
-    
+      
     def __init__(self, maquina, lenTablero, nombre):
         self.lenTablero = lenTablero
         self.machine = maquina
         self.nombre = nombre
-        print(coord)
+        self.coord = coord
         
-    def initTablero(self):
-        #Crea tablero de lenTableroxlenTablero relleno de espacio        
+    def initTablero(self):        
         self.tablero = np.full((self.lenTablero,self.lenTablero), " ")
-        self.impactos = np.full((self.lenTablero,self.lenTablero), " ")
-        print("Inicializar tablero", "de maquina?", self.machine, "\n", self.tablero, )
-
-        
-    
+        self.tablero_impactos = np.full((self.lenTablero,self.lenTablero), " ")
+        print("Inicializar tablero", "de maquina?", self.machine, "\n\n\n\n\n", self.tablero,  "\n")
 
     def colocarBarcos(self, tamBarco, num):
         print("colocar", num , "barcos de ", tamBarco, "\n")
@@ -66,6 +56,7 @@ class Jugador:
             
         #posicion inicial
         tam = tamBarco 
+        
         while(num):
             aOrientacion = ["N","S","E","O"]        
             num -=1
@@ -84,7 +75,7 @@ class Jugador:
                    (((y+1 < self.lenTablero)and (x-1 > -1) and (self.tablero[x-1,y+1] == " ")))or (y+1 == self.lenTablero)):
                         self.tablero[x,y] = "O"
                         initPosition = True
-                print(self.tablero)
+               #print(self.tablero, "\n\n\n\n\n\n")
             #elegir orientacion posible            
             orientacion = aOrientacion[np.random.randint(len(aOrientacion))]
             imposible = True
@@ -104,6 +95,7 @@ class Jugador:
                 if imposible and colision:                    
                     aOrientacion = ["N","S","E","O"]   
                     #new init position
+                    #borrar coordenada valida
                     initPosition = False  
                     orientacion = aOrientacion[np.random.randint(len(aOrientacion))] 
                     
@@ -120,36 +112,32 @@ class Jugador:
                 tamBarco-=1            
             
             tamBarco = tam
-            print(self.tablero)               
-                            
-
-        
-
+            #print(self.tablero)               
+  
     def mostrarTablero (self):
-        print("Tablero del jugador ", self.nombre, " \n", self.tablero)
+        print("Tablero del jugador ", self.nombre, " \n", self.tablero,  "\n")
 
-        
     def mostrarImpactos(self):
-        print("Tablero de impactos del jugador ", self.nombre, " \n", self.tablero_impactos)
+        print("Tablero de impactos del jugador ", self.nombre, " \n", self.tablero_impactos,  "\n")
 
-    def disparar():
-        #si es usuario
-        #para testear input a mano
-        x = 2
-        y = 5
-        #TODO lanzar disparo
+    def getDisparo(self, x, y):
+        #test
+        res = " "
+        funcionnoquedanbarcosqueaunnoexiste = ""#test temporal
+        barcotocado = ""
+        hundido = ""
+        #confiamos en que el jugador no dispara de nuevo en una casilla
+        if self.tablero[x,y] == "O":
+            if funcionnoquedanbarcosqueaunnoexiste:
+                res =  "fin de juego"
+            elif barcotocado:
+                res =  "X"
+            elif hundido:
+                res = "XX"
+        else:
+            res =  "-"
+        print("Jugador ", self.nombre, " ", res)
+        return res
 
-        #TODO recibir tocado/agua
-
-        #TODO apuntar en tablero de impactos
-        #si es maquina
-        #TODO generar coordenadas aleatorias 
-         #TODO lanzar disparo
-
-        #TODO recibir tocado/agua
-
-        #TODO apuntar en tablero de impactos
-
-       
-        #TODO si hundido marcar colindantes
-        print("disparar")
+    def setDisparo(self, x, y, res):
+        self.tablero_impactos[x,y] = res

@@ -1,17 +1,14 @@
 from utils import Jugador
-from const import barcos
-#class Game ?? : 
-
+from const import barcos, barcosNum
 
 
 tamTablero = 10 # ambos tienen el mismo tamaöo de tablero
-j1 = Jugador(False, tamTablero, "Aída")
-ordena = Jugador(True, tamTablero, "PC")
+j1 = Jugador(False, tamTablero, "Aída\n")
+ordena = Jugador(True, tamTablero, "PC\n")
 
 j1.initTablero()
 ordena.initTablero()
-for i, v in barcos.items():
-    print(i,v)
+for i, v in barcosNum.items():    
     j1.colocarBarcos(i,v)
     ordena.colocarBarcos(i,v)
 
