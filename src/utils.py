@@ -1,5 +1,5 @@
 import numpy as np
-from src.const import coord
+from const import coord
 
 class Jugador:
     machine = False

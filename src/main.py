@@ -1,5 +1,5 @@
 from utils import Jugador
-from src.const import barcos, barcosNum
+from const import barcos, barcosNum
 
 
 tamTablero = 10 # ambos tienen el mismo tamaöo de tablero
