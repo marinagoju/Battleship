@@ -18,7 +18,7 @@ class Jugador:
              
 
     def colocarBarcos(self, tamBarco, num):
-        print("colocar", num , "barcos de ", tamBarco, "\n")
+        print("colocando", num , "barcos de ", tamBarco, "\n")
 
         def checkColision(tamBarco, x,y, orientacion):
             t = tamBarco 
@@ -112,12 +112,12 @@ class Jugador:
             tamBarco = tam
             #print(self.tablero)               
   
-    def mostrarTablero (self):
-        print("Tablero de barcos de ", self.nombre, " \n")
+    def mostrarTablero(self):
+        print(" \n", f"Tablero de barcos de {self.nombre}:", " \n")
         self.imprimir_tablero(self.tablero, True, self.nombre)
 
     def mostrarImpactos(self):
-        print("Tablero de impactos de ", self.nombre, " \n")
+        print(" \n", f"Tablero de impactos de {self.nombre}:", " \n")
         self.imprimir_tablero(self.tablero_impactos, False, self.nombre)
 
     def todosHundidos(self):        
@@ -144,7 +144,7 @@ class Jugador:
 
     #https://parzibyte.me/blog/2021/12/21/batalla-naval-python-programacion-juego/#Imprimiendo_tablero
     def imprimir_tablero(self,matriz, deberia_mostrar_barcos, jugador):
-        print(f"Tablero del jugador {jugador}: ")
+        # print(f"Tablero del jugador {jugador}: ")
         letra = "A"
         for y in range(self.lenTablero):
             self.imprimir_separador_horizontal()
