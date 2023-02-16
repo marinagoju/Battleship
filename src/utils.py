@@ -183,9 +183,13 @@ class Jugador:
     def getDisparo(self, x, y):
         res = ""
         #la X puede ser una letra de la A a la J, lo contemplamos tambien
+        print(x, y, isinstance(x, str))
         if isinstance(x,str):
-            x = self.getIndiceLetra(x)
-       
+            if(x.isdigit()):
+                x = int(x)
+            else:                   
+                x = self.getIndiceLetra(x)
+        y = int(y)
         #TODO confiamos en que el jugador no dispara de nuevo en una casilla
         
         if self.tablero[x,y] == "O" or self.tablero[x,y].isdigit():
