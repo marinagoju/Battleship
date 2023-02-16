@@ -1,27 +1,14 @@
 from utils import Jugador
+from Game import Game
 from const import barcos, barcosNum
 
+name = input("-Capitán Sardino: Bienvenido a bordo grumete, ¿Cuál es tu nombre?:")
+print(f"-Capitán Sardino: Muy bien {name}, a partir de ahora formarás parte de la flota de Caramarisal, arr.\n\n Tu principal cometido aquí será guiarnos en el avistamiento de barcos enemigos para poder dispararles con la mayor precisión posible.\n")
+print(" Antes de embarcarte hacia la batalla debes tener en cuenta que:\n - La batalla tiene lugar en un área de superficie 10x10.\n - Se te solicitarán dos coordenadas del 0 al 9 para determinar la ubicación del disparo. \n - Si el disparo acierta aparecerá este simbolo en el mapa 'X'.\n - Si el disparo no acierta aparecerá '*'.\n - Inserta el comando 'salir' si deseas abandonar la flota.\n\n Dicho esto, todos a sus puestos, ¡Arriad velas! !Alzad el ancla¡. La flota está a punto de zarpar...")
 
-tamTablero = 10 # ambos tienen el mismo tamaöo de tablero
-j1 = Jugador(False, tamTablero, "Aída\n")
-ordena = Jugador(True, tamTablero, "PC\n")
 
-j1.initTablero()
-ordena.initTablero()
-for i, v in barcosNum.items():    
-    j1.colocarBarcos(i,v)
-    ordena.colocarBarcos(i,v)
+maquina = Jugador(True, "MarIA")
+grumete = Jugador(False, name)
+hundir_la_flota = Game(maquina, grumete)
 
-j1.mostrarTablero()
-ordena.mostrarTablero()
-#disparar a j1
-#feedback = j1.getDisparo()
-
-    
-
-print("disparo a ", "B",2, j1.getDisparo("B",2))
-print("disparo a ", "C",1, j1.getDisparo("C",1))
-print("disparo a ", "D",2, j1.getDisparo("D",2))
-print("disparo a ", "F",3, j1.getDisparo("F",3))
-print("disparo a ", "G",4, j1.getDisparo("G",4))
-print("disparo a ", "H",5, j1.getDisparo("H",5))
+hundir_la_flota.jugar() # Reinicia mapas/tableros y coloca los barcos
