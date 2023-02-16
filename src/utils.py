@@ -1,21 +1,22 @@
 import numpy as np
-from const import coord
+from const import coord, barcos
 
 class Jugador:
     machine = False
     tablero = []
     tablero_impactos = []   
+    lenTablero = 10
       
-    def __init__(self, maquina, lenTablero, nombre):
-        self.lenTablero = lenTablero
+    def __init__(self, maquina, nombre):        
         self.machine = maquina
         self.nombre = nombre
-        self.coord = coord
+       
+        
         
     def initTablero(self):        
         self.tablero = np.full((self.lenTablero,self.lenTablero), " ")
         self.tablero_impactos = np.full((self.lenTablero,self.lenTablero), " ")
-        print("Inicializar tablero", "de maquina?", self.machine, "\n\n\n\n\n", self.tablero,  "\n")
+        print("Inicializar tablero", "de maquina?", self.machine, "\n\n\n\n\n")        
 
     def colocarBarcos(self, tamBarco, num):
         print("colocar", num , "barcos de ", tamBarco, "\n")
@@ -27,21 +28,21 @@ class Jugador:
             c2 = y
             
             while t:                            
-                if((self.tablero[c1+self.coord[orientacion][0]-1, c2+self.coord[orientacion][1]-1]!= " ") and #casilla libre
+                if((self.tablero[c1+coord[orientacion][0]-1, c2+coord[orientacion][1]-1]!= " ") and #casilla libre
                 #TODO bug casilla libre Left Right Up Down D1 D2 D3 D4 a lo largo del nuevo barco               
-                    (((c1+self.coord[orientacion][0]-2 > -1) and (self.tablero[c1+self.coord[orientacion][0]-2, c2+self.coord[orientacion][1]-2]!= " ")) or ((c1+self.coord[orientacion][0]-1) == 0))and#D1 U-D
-                    (((c1+self.coord[orientacion][0]-2 > -1) and (self.tablero[c1+self.coord[orientacion][0]-2, c2+self.coord[orientacion][1]]!= " ")) or ((c1+self.coord[orientacion][0]-1) == 0))and#D2 U-I
-                    (((c1+self.coord[orientacion][0]-2 > -1) and (self.tablero[c1+self.coord[orientacion][0]+2, c2+self.coord[orientacion][1]]!= " ")) or ((c1+self.coord[orientacion][0]-1) == 0))and#D3 D-I
-                    (((c1+self.coord[orientacion][0]-2 > -1) and (self.tablero[c1+self.coord[orientacion][0]+2, c2+self.coord[orientacion][1]+2]!= " ")) or ((c1+self.coord[orientacion][0]-1) == 0))and#D4 D-D
-                    (((c1+self.coord[orientacion][0]-2 > -1) and (self.tablero[c1+self.coord[orientacion][0]-2, c2+self.coord[orientacion][1]-1]!= " ")) or ((c1+self.coord[orientacion][0]-1) == 0))and#Up
-                    (((c1+self.coord[orientacion][0]+2 < self.lenTablero) and (self.tablero[c1+self.coord[orientacion][0]+2, c2+self.coord[orientacion][1]-1]!= " " ) or ((c1+self.coord[orientacion][1]-1) < self.lenTablero)))and#Down
-                    (((c1+self.coord[orientacion][1]-2 > -1) and (self.tablero[c1+self.coord[orientacion][0], c2+self.coord[orientacion][1]-2]!= " ")) or (c1+self.coord[orientacion][1]-1) == 0)and#Left
-                    (((c1+self.coord[orientacion][1] < self.lenTablero) and (self.tablero[c1+self.coord[orientacion][0], c2+self.coord[orientacion][1]]!= " ")) or (c1+self.coord[orientacion][1]) == self.lenTablero)):#Right
+                   # (((c1+coord[orientacion][0]-2 > -1) and (self.tablero[c1+coord[orientacion][0]-2, c2+coord[orientacion][1]-2]!= " ")) or ((c1+coord[orientacion][0]-1) == 0))and#D1 U-D
+                   # (((c1+coord[orientacion][0]-2 > -1) and (self.tablero[c1+coord[orientacion][0]-2, c2+coord[orientacion][1]]!= " ")) or ((c1+coord[orientacion][0]-1) == 0))and#D2 U-I
+                   # (((c1+coord[orientacion][0]-2 > -1) and (self.tablero[c1+coord[orientacion][0]+2, c2+coord[orientacion][1]]!= " ")) or ((c1+coord[orientacion][0]-1) == 0))and#D3 D-I
+                   # (((c1+coord[orientacion][0]-2 > -1) and (self.tablero[c1+coord[orientacion][0]+2, c2+coord[orientacion][1]+2]!= " ")) or ((c1+coord[orientacion][0]-1) == 0))and#D4 D-D
+                    (((c1+coord[orientacion][0]-2 > -1) and (self.tablero[c1+coord[orientacion][0]-2, c2+coord[orientacion][1]-1]!= " ")) or ((c1+coord[orientacion][0]-1) == 0))and#Up
+                    (((c1+coord[orientacion][0]+2 < self.lenTablero) and (self.tablero[c1+coord[orientacion][0]+2, c2+coord[orientacion][1]-1]!= " " ) or ((c1+coord[orientacion][1]-1) < self.lenTablero)))and#Down
+                    (((c1+coord[orientacion][1]-2 > -1) and (self.tablero[c1+coord[orientacion][0], c2+coord[orientacion][1]-2]!= " ")) or (c1+coord[orientacion][1]-1) == 0)and#Left
+                    (((c1+coord[orientacion][1] < self.lenTablero) and (self.tablero[c1+coord[orientacion][0], c2+coord[orientacion][1]]!= " ")) or (c1+coord[orientacion][1]) == self.lenTablero)):#Right
                         colision = True
                         break
                 else:
-                    c1 += self.coord[orientacion][0]
-                    c2 += self.coord[orientacion][1]
+                    c1 += coord[orientacion][0]
+                    c2 += coord[orientacion][1]
                 if colision: 
                     break
                 else:
@@ -51,8 +52,6 @@ class Jugador:
                 #print(self.tablero)
                
             return colision
-
-
             
         #posicion inicial
         tam = tamBarco 
@@ -68,14 +67,14 @@ class Jugador:
                 if ((self.tablero[x,y] == " ") and
                    ((((x+1 < self.lenTablero) and (self.tablero[x+1,y] == " ")) or (x+1 == self.lenTablero))) and
                    (((x-1 > -1) and (self.tablero[x-1,y] == " ") or (x == 0))) and
-                   (((y+1 < self.lenTablero) and (self.tablero[x,y+1] == " ")) or (y + 1 == self.lenTablero)) and
-                   (((y+1 < self.lenTablero) and (x+1 < self.lenTablero) and (self.tablero[x+1,y+1] == " ")) or (y+1 == self.lenTablero)) and#diagonal
-                   (((y-1 > -1) and (x+1 < self.lenTablero) and (self.tablero[x+1,y-1] == " "))or (y == 0)) and
-                   (((y-1 > -1) and (y-1 > -1) and (self.tablero[x-1,y-1] == " ")) or (y == 0)) and
-                   (((y+1 < self.lenTablero)and (x-1 > -1) and (self.tablero[x-1,y+1] == " ")))or (y+1 == self.lenTablero)):
-                        self.tablero[x,y] = tam
+                   (((y+1 < self.lenTablero) and (self.tablero[x,y+1] == " ")) or (y + 1 == self.lenTablero))):# and
+                   #(((y+1 < self.lenTablero) and (x+1 < self.lenTablero) and (self.tablero[x+1,y+1] == " ")) or (y+1 == self.lenTablero)) and#diagonal
+                   #(((y-1 > -1) and (x+1 < self.lenTablero) and (self.tablero[x+1,y-1] == " "))or (y == 0)) and
+                   #(((y-1 > -1) and (y-1 > -1) and (self.tablero[x-1,y-1] == " ")) or (y == 0)) and
+                   #(((y+1 < self.lenTablero)and (x-1 > -1) and (self.tablero[x-1,y+1] == " ")))or (y+1 == self.lenTablero)):
+                        self.tablero[x,y] = str(tam) + str(num)
                         initPosition = True
-               #print(self.tablero, "\n\n\n\n\n\n")
+             
             #elegir orientacion posible            
             orientacion = aOrientacion[np.random.randint(len(aOrientacion))]
             imposible = True
@@ -108,7 +107,7 @@ class Jugador:
             
             while tamBarco-1:
                 t = tamBarco -1                 
-                self.tablero[x+(self.coord[orientacion][0]*t), y+(t*self.coord[orientacion][1])] = tam
+                self.tablero[x+(coord[orientacion][0]*t), y+(t*coord[orientacion][1])] = tam
                 tamBarco-=1            
             
             tamBarco = tam
@@ -137,7 +136,6 @@ class Jugador:
         for _ in range(self.lenTablero+1):
             print("+---", end="")
         print("+")
-
 
     def imprimir_fila_de_numeros(self):
         print("|   ", end="")
