@@ -2,21 +2,20 @@ import numpy as np
 from const import coord, barcos
 
 class Jugador:
-    machine = False
     tablero = []
     tablero_impactos = []   
     lenTablero = 10
       
-    def __init__(self, maquina, nombre):        
-        self.machine = maquina
+    def __init__(self, is_maquina, nombre):  # maquina -> bool   
+        self.is_maquina = is_maquina
         self.nombre = nombre
        
-        
+    
         
     def initTablero(self):        
         self.tablero = np.full((self.lenTablero,self.lenTablero), " ")
         self.tablero_impactos = np.full((self.lenTablero,self.lenTablero), " ")
-        print("Inicializar tablero", "de maquina?", self.machine, "\n\n\n\n\n")        
+             
 
     def colocarBarcos(self, tamBarco, num):
         print("colocar", num , "barcos de ", tamBarco, "\n")
@@ -114,11 +113,11 @@ class Jugador:
             #print(self.tablero)               
   
     def mostrarTablero (self):
-        print("Tablero del jugador ", self.nombre, " \n")
+        print("Tablero de barcos de ", self.nombre, " \n")
         self.imprimir_tablero(self.tablero, True, self.nombre)
 
     def mostrarImpactos(self):
-        print("Tablero de impactos del jugador ", self.nombre, " \n")
+        print("Tablero de impactos de ", self.nombre, " \n")
         self.imprimir_tablero(self.tablero_impactos, False, self.nombre)
 
     def todosHundidos(self):        

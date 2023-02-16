@@ -8,7 +8,7 @@ print(" Antes de embarcarte hacia la batalla debes tener en cuenta que:\n - La b
 
 
 maquina = Jugador(True, "MarIA")
-grumete = Jugador(False, name)
-hundir_la_flota = Game(maquina, grumete)
+jugador_grumete = Jugador(False, name)
+hundir_la_flota = Game(maquina, jugador_grumete)
 
-hundir_la_flota.jugar() # Reinicia mapas/tableros y coloca los barcos
+hundir_la_flota.jugar() # Reinicia tableros, coloca los barcos y muestra tablero

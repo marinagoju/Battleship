@@ -4,21 +4,22 @@ from const import barcos, barcosNum
 class Game: 
     turno = True # si es true el turno es del jugador, si no de la máquina
 
-    def __init__(self, maquina, grumete):        
-        self.maquina = maquina
-        self.grumete = grumete
+    def __init__(self, jugador: Jugador, maquina: Jugador): # Tipo el argumento para que quede fijo
+        self.jugador = jugador  
+        self.maquina = maquina 
 
     def jugar (self):
         tamTablero = 10 # ambos tienen el mismo tamaöo de tablero
+        print("Generando tableros y desplegando la flota...")
 
-        self.grumete.initTablero()
+        self.jugador.initTablero()
         self.maquina.initTablero()
         for i, v in barcosNum.items():    
-            self.grumete.colocarBarcos(i,v)
+            self.jugador.colocarBarcos(i,v)
             self.maquina.colocarBarcos(i,v)
 
-        self.grumete.mostrarTablero()
-        self.maquina.mostrarTablero()
+        self.jugador.mostrarTablero()
+        
         #disparar a j1
         #feedback =  self.grumete.getDisparo()
 
@@ -29,7 +30,7 @@ class Game:
             #mostrar feedback
             #si tocado repetir turno - fin de partida
             #si agua turno = false
-            print("es tu turno", self.grumete.nombre)
+            print("es tu turno", self.jugador.nombre)
         else:
             #logica para la maquina
             #generar coordenadas aleatoriiamente sin repetir
@@ -41,4 +42,4 @@ class Game:
 
             
 
-        print("disparo a ", "B",2, self.grumete.getDisparo("B",2))
+        print("disparo a ", "B",2, self.jugador.getDisparo("B",2))
