@@ -25,7 +25,5 @@ hundir_la_flota.salir(input2)
 
 print("\n","Esa es la actitud!. Dicho esto, todos a sus puestos, ¡Arriad velas! !Alzad el ancla¡. La flota está a punto de zarpar...","\n")
 
-
-
 hundir_la_flota.jugar() # Ejecuta el Juego. Desarrollo más detallado en la clase Game.
 

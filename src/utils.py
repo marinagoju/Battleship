@@ -177,10 +177,10 @@ class Jugador:
             #recorrer hasta no encontrar una X
         return res
 
-    def getIndiceLetra(self,letra:str):        
-        return ord(letra.upper()) - 65
+    def getIndiceLetra(self,letra:str): #   
+        return ord(letra.replace(" ", "").upper()) - 65
 
-    def getDisparo(self, x, y):
+    def getDisparo(self, x, y): #
         res = ""
         #la X puede ser una letra de la A a la J, lo contemplamos tambien
         print(x, y, isinstance(x, str))
@@ -190,7 +190,7 @@ class Jugador:
             else:                   
                 x = self.getIndiceLetra(x)
         y = int(y)
-        #TODO confiamos en que el jugador no dispara de nuevo en una casilla
+        
         
         if self.tablero[x,y] == "O" or self.tablero[x,y].isdigit():
             if self.todosHundidos():
@@ -206,7 +206,7 @@ class Jugador:
         self.setDisparo( x, y, res)
         return res 
 
-    def setDisparo(self, x, y, res):
+    def setDisparo(self, x, y, res): # coordenadas de disparo y actualizacion de estas en el tablero_impacto
         self.tablero_impactos[x,y] = res
-        self.mostrarTablero()
-        self.mostrarImpactos()
+        #self.mostrarTablero()
+        #self.mostrarImpactos()
