@@ -18,12 +18,6 @@ class Game:
     # def reiniciar(self): # TODO Función para reiniciar
 
 
-    def filtroCoord(self, textCoord:str): # Devuelve coordenada numerica cuando insertas una coordenada en letra.
-        for i,v in enumerate(["A", "B", "C", "D", "E", "E", "F", "G", "H", "I", "J"]):
-            if v == textCoord.replace(" ","").upper():
-                return i + 1
-
-
     def jugar (self):
         tamTablero = 10 # Ambos tienen las mismas dimensiones de tablero. ## Podriamos ponerlo en cnts para que quede mas limpio
         
