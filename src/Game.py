@@ -21,7 +21,7 @@ class Game:
     def filtroCoord(self, textCoord:str): # Devuelve coordenada numerica cuando insertas una coordenada en letra.
         for i,v in enumerate(["A", "B", "C", "D", "E", "E", "F", "G", "H", "I", "J"]):
             if v == textCoord.replace(" ","").upper():
-                return i
+                return i + 1
 
 
     def jugar (self):
@@ -46,7 +46,7 @@ class Game:
                 print("\n", f"Es tu turno, {self.jugador.nombre}","\n", self.jugador.mostrarTablero(), self.jugador.mostrarImpactos())
                 print("- Capitán Sardino: Y bien grummete, ¿hacia donde disparamos?.","\n")
                 x = input("Coordenada del eje x (A a J):") # TODO optimizar a letras
-                self.filtroCoord(x)
+                #self.filtroCoord(x)
                 self.salir(x)
                 y = input("Coordenada del eje y (1 a 10):") # La dejo en str para poder salir
                 self.salir(y)
