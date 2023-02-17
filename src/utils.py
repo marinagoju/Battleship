@@ -177,7 +177,7 @@ class Jugador:
             #recorrer hasta no encontrar una X
         return res
 
-    def getIndiceLetra(self,letra):        
+    def getIndiceLetra(self,letra:str):        
         return ord(letra.upper()) - 65
 
     def getDisparo(self, x, y):
