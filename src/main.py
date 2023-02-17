@@ -19,7 +19,7 @@ jugador_grumete = Jugador(False, name)
 hundir_la_flota = Game(maquina, jugador_grumete)
 
 
-input2 = input("- Capitán Sardino: ¿Entendido, grumete?:") # Oportunidad de salir
+input2 = input("- Capitán Sardino: ¿Entendido, grumete?:") # Oportunidad para salir con 'salir'/'no'
 hundir_la_flota.salir(input2)
 
 

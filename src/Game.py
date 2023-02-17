@@ -1,12 +1,12 @@
 from utils import Jugador
-from const import barcos, barcosNum
+from const import barcos, barcosNum, tamTablero
 import numpy as np
 
 class Game: 
-    turno = True # Si es True el turno es del jugador, si es False es el turno de la máquina
-    status = True # On/Off
+    turno = True # Si True es el turno del jugador, si False es el turno de la máquina
+    status = True # Si True esta On(encendido), si False está Off(apagado)
 
-    def __init__(self, maquina: Jugador, jugador: Jugador): # Tipo el argumento para que quede fijo
+    def __init__(self, maquina: Jugador, jugador: Jugador): # Tipo el argumento para que quede fija la clase del objeto
         self.maquina = maquina
         self.jugador = jugador  
 
@@ -19,7 +19,6 @@ class Game:
 
 
     def jugar (self):
-        tamTablero = 10 # Ambos tienen las mismas dimensiones de tablero. ## Podriamos ponerlo en cnts para que quede mas limpio
         
         print("* Generando tableros y desplegando la flota... *","\n")
 
@@ -35,9 +34,9 @@ class Game:
                 # TURNO/LOGICA DEL JUGADOR: 
                 # 1. coordenadas? > disparo
                 # 2. feedback despues del impacto > jugador.getDisparo()
-                # 3. si agua: turno = False ; si impacta: continue or fin = True
+                # 3. si agua: turno = False ; si impacta: continue or status = False
                 
-                print("\n", f"Es tu turno, {self.jugador.nombre}","\n", self.jugador.mostrarTablero(), self.jugador.mostrarImpactos())
+                print("\n", f"Turno de {self.jugador.nombre}.","\n", self.jugador.mostrarTablero(), self.jugador.mostrarImpactos())
                 print("- Capitán Sardino: Y bien grummete, ¿hacia donde disparamos?.","\n")
                 x = input("Coordenada del eje x (A a J):")
                 self.salir(x)
@@ -46,19 +45,19 @@ class Game:
 
                 print("\n","* Disparando a la flota enemiga...*","\n")
 
-                res = self.jugador.getDisparo(x,y)    # Reemplaza coordenada y actualiza tablero_impactos
+                res = self.jugador.getDisparo(x,y)    # Reemplaza coordenada y actualiza tablero_impactos jugador
                 if res == "-": # Si dispara en agua
                     self.turno = False
                     print("\n","* Fallo *","\n")
                     print("\n","-Capitán Sardino: Fallamos!, arr. Más al loro grumete!")
                 
-                elif res == "fin de juego": # Si todo los bascos enemigos se hunden
+                elif res == "fin de juego": # Si todo los barcos de maquina se hunden
                     self.status = False
                     print("\n","* Impacto *","\n")
                     print("\n","Barco tocado y hundido", "\n\n", "-Capitan Sardino: HurraAaAa! Hemos vencido!", "\n")
                     print("Victoria magistral. Todos los barcos de la flota enemiga han sido derrotados.")
                     break
-                else: # Si impacta a un barco
+                else: # Si impacta en un barco de maquina
                     print("\n","* Impacto *","\n") 
                     print("\n","-Capitan Sardino: por las barbas de Neptuno. Buen disparo!")
                     continue
@@ -66,12 +65,12 @@ class Game:
                 
             else:
                 # TURNO/LOGICA DE LA MAQUINA: 
-                # 1. coordenadas aleatorias sin repetir (verifica que no haya nada en la coordenada de tablero_imapctos) > disparo
+                # 1. coordenadas aleatorias sin repetir (verifica que no haya nada en la coordenada de tablero_imapactos) > disparo
                 # 2. feedback despues del impacto > jugador.getDisparo()
-                # 3. si agua: turno = False ; si impacta: continue or fin = True -> Y actualiza tablero
+                # 3. si agua: turno = False ; si impacta: continue or status = False -> Y actualiza tablero
 
 
-                print("\n", f"Ahora es el turno de {self.maquina.nombre}")
+                print("\n", f"Turno de {self.maquina.nombre}.")
 
                 while self.turno == False: 
                     x = np.random.randint(10)
@@ -82,21 +81,21 @@ class Game:
                     
                     print("\n","* Barco enemigo disparando... *","\n")
 
-                    res = self.maquina.getDisparo(x,y)      # Reemplaza coordenada y actualizar tablero_impactos ??
+                    res = self.maquina.getDisparo(x,y)  # Reemplaza coordenada y actualiza tablero_barcos del jugador
                     if res == "-": # Si dispara en agua
         
                         self.turno = True
                         print("\n","* Fallo *","\n")
                         print("\n","-Capitán Sardino: Fallaron!, arr.")
                        
-                    elif res == "fin de juego":  # Si impacta a un barco
+                    elif res == "fin de juego":  # Si todos los barcos del jugador se hunden
                         
                         self.status = False
                         print("\n","* Impacto *","\n\n","Barco tocado y hundido.","\n")
                         print("\n","Derrota aplastante. Todos los barcos de tu flota se han ido a pique...")
                         print("\n","- Capitán Sardino: Gluglugluglu...","\n")
                         break
-                    else:
+                    else: # Si impacta en barco de jugador
                         
                         print("\n","* Impacto *","\n")
                         print("\n","- Capitán Sardino: Ouch!","\n")

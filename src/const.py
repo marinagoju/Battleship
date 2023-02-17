@@ -6,13 +6,13 @@ coord = {
     }
 
 barcosNum = {
-    #tipo:cantidad
+    #tipo(eslora):cantidad(barcos)
     4:1, 3:2, 2:3, 1:4
 }
 
 
 barcos = {
-    #tipo:cantidad
+    #tipo:cantidad 
     "b1": [4,1,0],
     "b2": [3,1,0],
     "b3": [3,2,0],
@@ -24,3 +24,5 @@ barcos = {
     "b9": [1,3,0],
     "b10": [1,4,0]    
 }
+
+tamTablero = 10 # Tamaño predefinido del tablero para ambos jugadores 
