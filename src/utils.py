@@ -4,6 +4,7 @@ from const import coord, barcos
 class Jugador:
     tablero = []
     tablero_impactos = []   
+    tablero_barcos = np.full((10,10),0) # tablero para comprobar si un barco está hundido, no se visualiza
     lenTablero = 10
       
     def __init__(self, is_maquina, nombre):  # maquina -> bool   
@@ -71,7 +72,10 @@ class Jugador:
                    #(((y-1 > -1) and (x+1 < self.lenTablero) and (self.tablero[x+1,y-1] == " "))or (y == 0)) and
                    #(((y-1 > -1) and (y-1 > -1) and (self.tablero[x-1,y-1] == " ")) or (y == 0)) and
                    #(((y+1 < self.lenTablero)and (x-1 > -1) and (self.tablero[x-1,y+1] == " ")))or (y+1 == self.lenTablero)):
-                        self.tablero[x,y] = str(tam) + str(num)
+                        self.tablero[x,y] = tam
+                        print(str(tam) + str(num))
+                        
+                        self.tablero_barcos[x,y] = str(tam) + str(num)
                         initPosition = True
              
             #elegir orientacion posible            
@@ -107,6 +111,7 @@ class Jugador:
             while tamBarco-1:
                 t = tamBarco -1                 
                 self.tablero[x+(coord[orientacion][0]*t), y+(t*coord[orientacion][1])] = tam
+                self.tablero_barcos[x+(coord[orientacion][0]*t), y+(t*coord[orientacion][1])] = str(tam) + str(num)
                 tamBarco-=1            
             
             tamBarco = tam
@@ -165,33 +170,25 @@ class Jugador:
         self.imprimir_fila_de_numeros()
         self.imprimir_separador_horizontal()
 
-    def barcoHundido(self, x, y):
-        #funcion a desarrollar si tenemos tiempo - crear diccionario / clase barcos
-        res = False
-        tamBarco = self.tablero[x,y]
-        if (tamBarco == 1):
-            res = True
-        else:
-            #buscar en que direccion crece el barco
-            res = False
-            #recorrer hasta no encontrar una X
-        return res
+    def barcoHundido(self, x, y):        
+        print("Hundido barco de " ,self.tablero[x,y], " posiciones!")
+        return len(self.tablero_barcos[self.tablero_barcos == self.tablero_barcos[x,y]]) < 1
 
-    def getIndiceLetra(self,letra):        
+    def getIndiceLetra(self,letra):    
+        print("indice letra", letra)    
         return ord(letra.upper()) - 65
 
     def getDisparo(self, x, y):
         res = ""
         #la X puede ser una letra de la A a la J, lo contemplamos tambien
-        print(x, y, isinstance(x, str))
+        
         if isinstance(x,str):
             if(x.isdigit()):
                 x = int(x)
             else:                   
                 x = self.getIndiceLetra(x)
-        y = int(y)
-        #TODO confiamos en que el jugador no dispara de nuevo en una casilla
-        
+        y = int(y) - 1
+                
         if self.tablero[x,y] == "O" or self.tablero[x,y].isdigit():
             if self.todosHundidos():
                 res =  "fin de juego"
