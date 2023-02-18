@@ -4,7 +4,7 @@ import numpy as np
 
 class Game: 
     turno = True # Si True es el turno del jugador, si False es el turno de la máquina
-    status = True # Si True esta On(encendido), si False está Off(apagado)
+    status = True # Si True esta On (encendido), si False está Off (apagado)
 
     def __init__(self, maquina: Jugador, jugador: Jugador): # Tipo el argumento para que quede fija la clase del objeto
         self.maquina = maquina
