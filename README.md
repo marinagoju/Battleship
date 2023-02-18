@@ -1,4 +1,4 @@
-![imagen](./img/car3.png)
+![imagen](./img/23.jpg)
 
 # Bienvenidos a la flota de Caramarisal ☠️
 
