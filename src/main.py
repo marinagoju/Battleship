@@ -18,14 +18,10 @@ maquina = Jugador(True, "MarIA")
 jugador_grumete = Jugador(False, name)
 hundir_la_flota = Game(maquina, jugador_grumete)
 
-
-input2 = input("- Capitán Sardino: ¿Entendido, grumete?:") # Oportunidad de salir
+input2 = input("- Capitán Sardino: ¿Entendido, grumete?:") # Oportunidad para salir con 'salir'/'no'
 hundir_la_flota.salir(input2)
 
 
 print("\n","Esa es la actitud!. Dicho esto, todos a sus puestos, ¡Arriad velas! !Alzad el ancla¡. La flota está a punto de zarpar...","\n")
 
-
-
-hundir_la_flota.jugar() # Ejecuta el Juego. Desarrollo maás detallado en la clase Game.
-
+hundir_la_flota.jugar() # Ejecuta el Juego. Desarrollo más detallado en la clase Game.
