@@ -1,5 +1,5 @@
 from utils import Jugador
-from const import barcos, barcosNum, tamTablero
+from const import barcos, barcosNum
 import numpy as np
 
 class Game: 
@@ -36,8 +36,9 @@ class Game:
                 # 2. feedback despues del impacto > jugador.getDisparo()
                 # 3. si agua: turno = False ; si impacta: continue or status = False
                 
-                print("\n", f"Turno de {self.jugador.nombre}.","\n", self.jugador.mostrarTablero(), self.jugador.mostrarImpactos())
-                print("- Capitán Sardino: Y bien grummete, ¿hacia donde disparamos?.","\n")
+                print("\n\n", f"Turno de {self.jugador.nombre}") 
+                self.jugador.mostrarTableros()
+                print("\n","- Capitán Sardino: Y bien grummete, ¿hacia donde disparamos?.","\n")
                 x = input("Coordenada del eje x (A a J):")
                 self.salir(x)
                 y = input("Coordenada del eje y (1 a 10):") 
@@ -70,7 +71,7 @@ class Game:
                 # 3. si agua: turno = False ; si impacta: continue or status = False -> Y actualiza tablero
 
 
-                print("\n", f"Turno de {self.maquina.nombre}.")
+                print("\n\n",f"Turno de {self.maquina.nombre}")
 
                 while self.turno == False: 
                     x = np.random.randint(10)
@@ -85,19 +86,19 @@ class Game:
                     if res == "-": # Si dispara en agua
         
                         self.turno = True
-                        print("\n","* Fallo *","\n")
+                        print("* Fallo *","\n")
                         print("\n","-Capitán Sardino: Fallaron!, arr.")
                        
                     elif res == "fin de juego":  # Si todos los barcos del jugador se hunden
                         
                         self.status = False
-                        print("\n","* Impacto *","\n\n","Barco tocado y hundido.","\n")
-                        print("\n","Derrota aplastante. Todos los barcos de tu flota se han ido a pique...")
+                        print("* Impacto *","\n\n","Barco tocado y hundido.","\n")
+                        print("Derrota aplastante. Todos los barcos de tu flota se han ido a pique...")
                         print("\n","- Capitán Sardino: Gluglugluglu...","\n")
                         break
                     else: # Si impacta en barco de jugador
                         
-                        print("\n","* Impacto *","\n")
+                        print("* Impacto *","\n")
                         print("\n","- Capitán Sardino: Ouch!","\n")
                         continue
                     

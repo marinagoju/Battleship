@@ -25,4 +25,4 @@ barcos = {
     "b10": [1,4,0]    
 }
 
-tamTablero = 10 # Tamaño predefinido del tablero para ambos jugadores 
+lenTablero = 10 # Tamaño predefinido del tablero para ambos jugadores 
