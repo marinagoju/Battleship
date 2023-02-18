@@ -1,6 +1,6 @@
 ![imagen](./imagen1.png)
 
-# Bienvenido a la flota de Caramarisal ☠️
+# Bienvenidos a la flota de Caramarisal ☠️
 
 Este proyecto surge a raíz de una actividad en la que se nos planteó la idea de desarrollar un videojuego basado en el clásico juego de barcos de Hundir La Flota.  
 En el siguiente documento se muestran los detalles del juego. Las reglas implementadas, recursos y librerías utilizadas, así como otras particularidades del mismo.
@@ -10,6 +10,7 @@ Para cualquier duda, aquí el enlace a nuestro perfil de gitHub.
 
 *Marina G. de Juan [@marinagoju](https://github.com/marinagoju)*   
 *Aída [@yporquenoahora](https://github.com/yporquenoahora)*<br></br>
+[TOCM]
 1. [Reglas del Juego](#id1)
 2. [Funciones añadidas](#id2)
 3. [Recursos](#id3)
@@ -56,7 +57,7 @@ Las dimensiones del tablero están definidas por la constante **lenTablero** que
 ### ⚙️ **3. Recursos**<a name="id2"></a>
 
 * https://parzibyte.me/blog/2021/12/21/batalla-naval-python-programacion-juego/
-* https://pandao.github.io/editor.md/en.html#
+* https://pandao.github.io/editor.md/en.html
 * https://www.delftstack.com/es/howto/python/python-exit-program/
 * http://es.battleship-game.org/
 * https://note.nkmk.me/en/python-chr-ord-unicode-code-point/
