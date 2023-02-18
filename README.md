@@ -10,7 +10,7 @@ Para cualquier duda, aquí el enlace a nuestro perfil de gitHub.
 
 *Marina G. de Juan [@marinagoju](https://github.com/marinagoju)*   
 *Aída [@yporquenoahora](https://github.com/yporquenoahora)*<br></br>
-[TOCM]
+
 1. [Reglas del Juego](#id1)
 2. [Funciones añadidas](#id2)
 3. [Recursos](#id3)
