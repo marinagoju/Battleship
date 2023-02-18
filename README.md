@@ -64,5 +64,4 @@ Las dimensiones del tablero están definidas por la constante **lenTablero** que
 * Otros recursos de Data Science The bridge.<br></br>
 ### 📚 **4. Librerías de Python**<a name="id3"></a>
 
-* Numpy
-* Matplotlib<br></br>
+* Numpy<br></br>

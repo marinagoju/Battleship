@@ -18,7 +18,7 @@ class Jugador:
              
 
     def colocarBarcos(self, tamBarco, num):
-        print("colocando", num , "barcos de ", tamBarco, "\n")
+        #print("colocando", num , "barcos de ", tamBarco, "\n")
 
         def checkColision(tamBarco, x,y, orientacion):
             t = tamBarco 
@@ -110,27 +110,18 @@ class Jugador:
                 tamBarco-=1            
             
             tamBarco = tam
-            #print(self.tablero)               
-  
-    def mostrarTableros(self):
-        print("\n", f"            Tablero de barcos:                                           Tablero de impactos:", "\n")
-        self.imprimir_tablero(self.tablero, self.tablero_impactos, True, self.nombre)
 
-    # def mostrarImpactos(self):
-    #     print(" \n", f"Tablero de impactos de {self.nombre}:", " \n")
-    #     self.imprimir_tablero(self.tablero_impactos, False, self.nombre)
-
-    def todosHundidos(self):        
-        return len(np.where( self.tablero != "X")) == 0 
-
-    def barcoTocado(self, x, y):
-        return self.tablero[x,y] == "O" or self.tablero[x,y].isdigit()
 
     def incrementar_letra(letra):
             return chr(ord(letra)+1)
+  
+
+    def mostrarTableros(self): # Muestra ambos tableros
+        print("\n", f"            Tablero de barcos:                                           Tablero de impactos:", "\n")
+        self.imprimir_tablero(self.tablero, self.tablero_impactos, True, self.nombre)
 
 
-    def imprimir_fila_de_numeros(self):
+    def imprimir_fila_de_numeros(self): # Separador tablero
         fila_de_numeros_doble = "|   "
         
         for x in range(10):
@@ -147,9 +138,7 @@ class Jugador:
         fila_de_numeros_doble += "|"
         print(fila_de_numeros_doble)
 
-
-
-    def imprimir_separador_horizontal(self):
+    def imprimir_separador_horizontal(self): # Separador tablero
         separador_doble = ""
         for _ in range(11):
             separador_doble += "+---"
@@ -200,40 +189,36 @@ class Jugador:
         self.imprimir_separador_horizontal()
         self.imprimir_fila_de_numeros()
         self.imprimir_separador_horizontal()
-    # def imprimir_separador_horizontal(self):
-    #     # Imprimir un renglón dependiendo de las columnas
-    #     for _ in range(lenTablero+1):
-    #         print("+---", end="")
-    #     print("+")
-
-    # def imprimir_fila_de_numeros(self):
-    #     print("|   ", end="")
-    #     for x in range(lenTablero):
-    #         print(f"| {x+1} ", end="")
-    #     print("|")
-
-    #https://parzibyte.me/blog/2021/12/21/batalla-naval-python-programacion-juego/#Imprimiendo_tablero
-    # def imprimir_tablero(self,matriz, deberia_mostrar_barcos, jugador):
-    #     # print(f"Tablero del jugador {jugador}: ")
-    #     letra = "A"
-    #     for y in range(lenTablero):
-    #         self.imprimir_separador_horizontal()
-    #         print(f"| {letra} ", end="")
-    #         for x in range(lenTablero):
-    #             celda = matriz[y][x]
-    #             valor_real = celda
-    #             if not deberia_mostrar_barcos and valor_real != " " and valor_real != "-" and valor_real != "X":
-    #                 valor_real = " "
-               
-    #             if valor_real.isdigit():
-    #                 valor_real = "O"
-    #             print(f"| {valor_real} ", end="")
-    #         letra = chr(ord(letra)+1)
-    #         print("|",)  # Salto de línea
-    #     self.imprimir_separador_horizontal()
-    #     self.imprimir_fila_de_numeros()
-    #     self.imprimir_separador_horizontal()
         
+
+    def getDisparo(self, x, y):
+        res = ""
+
+        if self.tablero[x,y-1] == "O":
+            if self.todosHundidos():
+                res =  "fin de juego"
+            elif self.barcoTocado(x,y-1):
+                res =  "X"
+            elif self.barcoHundido(x,y-1):
+                res = "XX"
+         
+        else:
+            res =  "-"
+        
+        self.setDisparo(x, y-1, res)
+        return res
+
+
+    def todosHundidos(self):        
+        return len(np.where( self.tablero != "X")) == 0 
+
+    def barcoTocado(self, x, y):
+        return self.tablero[x,y] == "O" or self.tablero[x,y].isdigit()
+
+
+    def setDisparo(self, x, y, res): # coordenadas de disparo y actualizacion de estas en el tablero_impacto
+        self.tablero_impactos[x,y] = res
+
 
     def barcoHundido(self, x, y):
         #funcion a desarrollar si tenemos tiempo - crear diccionario / clase barcos
@@ -246,36 +231,4 @@ class Jugador:
             res = False
             #recorrer hasta no encontrar una X
         return res
-
-    def getIndiceLetra(self,letra:str): #   
-        return ord(letra.replace(" ", "").upper()) - 65
-
-    def getDisparo(self, x, y): #
-        res = ""
-        #la X puede ser una letra de la A a la J, lo contemplamos tambien
-        #print(x, y, isinstance(x, str))
-        if isinstance(x,str):
-            if(x.isdigit()):
-                x = int(x)
-            else:                   
-                x = self.getIndiceLetra(x)
-        y = int(y)
-        
-        
-        if self.tablero[x,y] == "O" or self.tablero[x,y].isdigit():
-            if self.todosHundidos():
-                res =  "fin de juego"
-            elif self.barcoTocado(x,y):
-                res =  "X"
-            elif self.barcoHundido(x,y):
-                res = "XX"
-         
-        else:
-            res =  "-"
-        
-        self.setDisparo( x, y, res)
-        return res 
-
-    def setDisparo(self, x, y, res): # coordenadas de disparo y actualizacion de estas en el tablero_impacto
-        self.tablero_impactos[x,y] = res
     
