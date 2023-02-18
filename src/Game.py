@@ -11,7 +11,7 @@ class Game:
         self.jugador = jugador  
 
 
-    def SalirInicio(self,exit_word:str): # Función para salir
+    def SalirInicio(self,exit_word:str): # Filtro input inicial para salir
         if exit_word.replace(" ","").upper() == "SALIR" or exit_word.replace(" ","").upper() =="NO":
             x2 = input("¿Estás seguro? Si sales abandonarás el barco (si/no):") # Doble check
             if x2.replace(" ","").upper() == "SALIR" or x2.replace(" ","").upper() =="SI": 
@@ -19,7 +19,7 @@ class Game:
                 quit()
 
 
-    def AskCoordx(self):
+    def AskCoordx(self): # Filtro input de la coordenada x (str)
         x = input("Coordenada del eje x (A a J):")
 
         if x.replace(" ","").upper() == "SALIR":
@@ -38,18 +38,18 @@ class Game:
             return self.GetIndiceLetra(x)
 
         else:
-            print("Coordenada Inválida. Prueba una letra de la A a la J.")
+            print("\n","Coordenada Inválida. Prueba una letra de la A a la J.""\n",)
             self.AskCoordx()
  
 
-    def GetIndiceLetra(self,x:str):
+    def GetIndiceLetra(self,x:str): # Función de utilidad para adquirir el indice de la letra.
 
         for i,v in enumerate(["A","B","C","D","E","F","G","H","I","J"]):
             if v == x.replace(" ","").upper():
                 return i 
 
                 
-    def AskCoordy(self):
+    def AskCoordy(self): # # Filtro input de la coordenada y (int)
         try:
             y = input("Coordenada del eje y (1 al 10):")
 
@@ -57,7 +57,7 @@ class Game:
                 y2 = input("¿Estás seguro? Si sales abandonarás el barco (si/no):") # Doble check
 
                 if y2.replace(" ","").upper() == "SALIR" or y2.replace(" ","").upper() =="SI": 
-                    print("\n","Esperábamos más de ti, grumete, pero se ve que no tenías la valía necesaria.","\n")
+                    print("\n","- Capitán Sardino: Esperábamos más de ti, grumete, pero se ve que no tenías la valía necesaria.","\n")
                     quit()
                 
                 else:
@@ -66,15 +66,15 @@ class Game:
             elif int(y) > 0 and int(y) < 11:
                     return int(y)
             else:
-                print("Coordenada Inválida. Prueba un número entero entre 1 y 10.")
+                print("\n","Coordenada Inválida. Prueba un número entero entre 1 y 10.""\n",)
                 self.AskCoordy()
         except:
-            print("Coordenada Inválida. Prueba un número entero entre 1 y 10.")
+            print("\n","Coordenada Inválida. Prueba un número entero entre 1 y 10.""\n",)
             self.AskCoordy()
 
    
 
-    def Jugar(self):
+    def Jugar(self): # DESARROLLO DEL JUEGO
         
         print("\n","* Generando tableros y desplegando la flota... *","\n")
 
@@ -98,10 +98,10 @@ class Game:
                 x = self.AskCoordx()
                 y = self.AskCoordy()
 
-                # if self.jugador.tablero_impactos[x,y] == "-": # si dispara a la misma coordenada
-                #     print("Ya has disparado a esa coordenada")
-                #     self.AskCoordx()
-                #     self.AskCoordy()
+                if self.jugador.tablero_impactos[x,y-1] == "-": # WARNING Si dispara a la misma coordenada
+                     print("\n","-Capitán Sardino: MERLUZO! Ya hemos disparado a esa coordenada.","\n",)
+                     self.AskCoordx()
+                     self.AskCoordy()
 
                 print("\n","* Disparando a la flota enemiga...*")
 
@@ -120,7 +120,6 @@ class Game:
                     print("\n","* Impacto *                              - Capitan Sardino: por las barbas de Neptuno. Buen disparo!") 
                     continue
 
-                
             else:
                 # TURNO/LOGICA DE LA MAQUINA: 
                 # 1. coordenadas aleatorias sin repetir (verifica que no haya nada en la coordenada de tablero_impactos) > disparo
@@ -141,19 +140,16 @@ class Game:
 
                     res = self.maquina.getDisparo(x,y)  # Reemplaza coordenada y actualiza tablero_barcos del jugador
                     if res == "-": # Si dispara en agua
-        
                         self.turno = True
                         print("\n","* Fallo *                                 - Capitán Sardino: Fallaron!, arr.")
                        
                     elif res == "fin de juego":  # Si todos los barcos del jugador se hunden
-                        
                         self.status = False
                         print("\n","* Impacto *")
                         print("\n","* Barco tocado y hundido *                - Capitán Sardino: Gluglugluglu...")
                         print("\n","Derrota aplastante. Todos los barcos de tu flota se han ido a pique...")
                         break
                     else: # Si impacta en barco de jugador
-                        
                         print("\n","* Impacto *                               - Capitán Sardino: Ouch!")
                         continue
                     
