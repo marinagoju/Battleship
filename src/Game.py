@@ -14,39 +14,47 @@ class Game:
     def SalirInicio(self,exit_word:str): # Filtro input inicial para salir
         if exit_word.replace(" ","").upper() == "SALIR" or exit_word.replace(" ","").upper() =="NO":
             x2 = input("¿Estás seguro? Si sales abandonarás el barco (si/no):") # Doble check
+
             if x2.replace(" ","").upper() == "SALIR" or x2.replace(" ","").upper() =="SI": 
                 print("\n","Esperábamos más de ti, grumete, pero se ve que no tenías la valía necesaria.","\n")
                 quit()
 
+    def GetIndiceLetra(self,x:str): # Función de utilidad para adquirir el indice de la letra.
+
+        for i, v in enumerate(["A","B","C","D","E","F","G","H","I","J"]):
+            if v == x.replace(" ","").upper():
+                return i 
+
+    def GetIndiceNumero(self,y:str): # Función de utilidad para adquirir el indice de la letra.
+
+        for i, v in enumerate(["1","2","3","4","5","6","7","8","9","10"]):
+            if v == y.replace(" ","").upper():
+                return i
 
     def AskCoordx(self): # Filtro input de la coordenada x (str)
         x = input("Coordenada del eje x (A a J):")
 
         if x.replace(" ","").upper() == "SALIR":
             x2 = input("¿Estás seguro? Si sales abandonarás el barco (si/no):") # Doble check
+
             if x2.replace(" ","").upper() == "salir" or x2.replace(" ","").upper() =="SI": 
                 print("\n","Esperábamos más de ti, grumete, pero se ve que no tenías la valía necesaria.","\n")
                 quit()
                 
             else:
                 self.AskCoordx()
+
         elif x.replace(" ","").upper() in ["1","2","3","4","5","6","7","8","9","10"]:
   
-            return int(x)
+            return int(x)-1
 
         elif x.replace(" ","").upper() in ["A","B","C","D","E","F","G","H","I","J"]:
+
             return self.GetIndiceLetra(x)
 
         else:
             print("\n","Coordenada Inválida. Prueba una letra de la A a la J.""\n",)
             self.AskCoordx()
- 
-
-    def GetIndiceLetra(self,x:str): # Función de utilidad para adquirir el indice de la letra.
-
-        for i,v in enumerate(["A","B","C","D","E","F","G","H","I","J"]):
-            if v == x.replace(" ","").upper():
-                return i 
 
                 
     def AskCoordy(self): # # Filtro input de la coordenada y (int)
@@ -63,8 +71,9 @@ class Game:
                 else:
                     self.AskCoordy()
 
-            elif int(y) > 0 and int(y) < 11:
-                    return int(y)
+            elif y.replace(" ","").upper() in ["1","2","3","4","5","6","7","8","9","10"]:
+                return self.GetIndiceNumero(y)
+                
             else:
                 print("\n","Coordenada Inválida. Prueba un número entero entre 1 y 10.""\n",)
                 self.AskCoordy()
@@ -141,7 +150,7 @@ class Game:
                     res = self.maquina.getDisparo(x,y)  # Reemplaza coordenada y actualiza tablero_barcos del jugador
                     if res == "-": # Si dispara en agua
                         self.turno = True
-                        print("\n","* Fallo *                                 - Capitán Sardino: Fallaron!, arr.")
+                        print("\n","* Fallo *                                 - Capitán Sardino: Eso estuvo cerca.")
                        
                     elif res == "fin de juego":  # Si todos los barcos del jugador se hunden
                         self.status = False

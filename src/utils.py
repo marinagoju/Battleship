@@ -118,10 +118,10 @@ class Jugador:
 
     def mostrarTableros(self): # Muestra ambos tableros
         print("\n", f"            Tablero de barcos:                                           Tablero de impactos:", "\n")
-        self.imprimir_tablero(self.tablero, self.tablero_impactos, True, self.nombre)
+        self.imprimir_tablero(self.tablero, self.tablero_impactos, True)
 
 
-    def imprimir_fila_de_numeros(self): # Separador tablero
+    def imprimir_fila_de_numeros(self): # Crea dos filas de numeros de ambos tableros
         fila_de_numeros_doble = "|   "
         
         for x in range(10):
@@ -138,7 +138,7 @@ class Jugador:
         fila_de_numeros_doble += "|"
         print(fila_de_numeros_doble)
 
-    def imprimir_separador_horizontal(self): # Separador tablero
+    def imprimir_separador_horizontal(self): # Separadores horizontales de ambos tableros
         separador_doble = ""
         for _ in range(11):
             separador_doble += "+---"
@@ -148,14 +148,13 @@ class Jugador:
         separador_doble += "+"
         print(separador_doble)
 
-## Función que imprime el tablero en paralelo generando dos strings. 
-# @params: 
+# IMPRESION TABLERO SIDE TO SIDE 
 # matriz_barcos: Numpy.ndarray con digitos que representa los barcos. 
 # matriz_impactos: Numpy.Array que representa los impactos en el contrario
 # deberia_mostrar_barcos: Booleano que representa y se deberían imprimirse barcos. 
 # jugador: ???
 
-    def imprimir_tablero(self, matriz_barcos, matriz_impactos, deberia_mostrar_barcos, nombre_jugador):
+    def imprimir_tablero(self, matriz_barcos, matriz_impactos, deberia_mostrar_barcos):
       
         for (y, letra) in zip(range(10), "ABCDEFGHIJ"):
             self.imprimir_separador_horizontal()
@@ -164,16 +163,15 @@ class Jugador:
 
             for x in range(10):
 
-                celda_barco = matriz_barcos[y][x]
-                celda_impactos = matriz_impactos[y][x]
+                celda_barco = matriz_barcos[x][y]
+                celda_impactos = matriz_impactos[x][y]
 
                 if not deberia_mostrar_barcos and celda_barco != " " and celda_barco != "-" and celda_barco != "X":
                     celda_barco = " "
                
                 if celda_barco.isdigit():
                     celda_barco = "O"
-
-                ## TODO: Revisar la doble negación Booleana, el not (not ) no está muy bonito. 
+ 
                 if not (not deberia_mostrar_barcos) and celda_impactos != " " and celda_impactos != "-" and celda_impactos != "X":
                     celda_impactos = " "
                 
@@ -193,19 +191,20 @@ class Jugador:
 
     def getDisparo(self, x, y):
         res = ""
+        print(x,y)
 
-        if self.tablero[x,y-1] == "O":
+        if self.tablero[x,y] == "O":
             if self.todosHundidos():
                 res =  "fin de juego"
-            elif self.barcoTocado(x,y-1):
+            elif self.barcoTocado(x,y):
                 res =  "X"
-            elif self.barcoHundido(x,y-1):
+            elif self.barcoHundido(x,y):
                 res = "XX"
          
         else:
             res =  "-"
         
-        self.setDisparo(x, y-1, res)
+        self.setDisparo(x, y, res)
         return res
 
 
@@ -213,7 +212,7 @@ class Jugador:
         return len(np.where( self.tablero != "X")) == 0 
 
     def barcoTocado(self, x, y):
-        return self.tablero[x,y] == "O" or self.tablero[x,y].isdigit()
+        return self.tablero[x,y] == "O"
 
 
     def setDisparo(self, x, y, res): # coordenadas de disparo y actualizacion de estas en el tablero_impacto
