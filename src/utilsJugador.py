@@ -1,5 +1,5 @@
 import numpy as np
-from const import coord, barcos, lenTablero
+from constants import coord, barcos, lenTablero
 
 class Jugador:
     tablero = []
@@ -202,43 +202,10 @@ class Jugador:
         self.imprimir_separador_horizontal()
         self.imprimir_fila_de_numeros()
         self.imprimir_separador_horizontal()
-    # def imprimir_separador_horizontal(self):
-    #     # Imprimir un renglón dependiendo de las columnas
-    #     for _ in range(lenTablero+1):
-    #         print("+---", end="")
-    #     print("+")
-
-    # def imprimir_fila_de_numeros(self):
-    #     print("|   ", end="")
-    #     for x in range(lenTablero):
-    #         print(f"| {x+1} ", end="")
-    #     print("|")
-
-    #https://parzibyte.me/blog/2021/12/21/batalla-naval-python-programacion-juego/#Imprimiendo_tablero
-    # def imprimir_tablero(self,matriz, deberia_mostrar_barcos, jugador):
-    #     # print(f"Tablero del jugador {jugador}: ")
-    #     letra = "A"
-    #     for y in range(lenTablero):
-    #         self.imprimir_separador_horizontal()
-    #         print(f"| {letra} ", end="")
-    #         for x in range(lenTablero):
-    #             celda = matriz[y][x]
-    #             valor_real = celda
-    #             if not deberia_mostrar_barcos and valor_real != " " and valor_real != "-" and valor_real != "X":
-    #                 valor_real = " "
-               
-    #             if valor_real.isdigit():
-    #                 valor_real = "O"
-    #             print(f"| {valor_real} ", end="")
-    #         letra = chr(ord(letra)+1)
-    #         print("|",)  # Salto de línea
-    #     self.imprimir_separador_horizontal()
-    #     self.imprimir_fila_de_numeros()
-    #     self.imprimir_separador_horizontal()
-        
-
+   
     def barcoHundido(self, x, y):        
-        print("Hundido barco de " ,self.tablero[x,y], " posiciones!")
+        if (len(self.tablero_barcos[self.tablero_barcos == self.tablero_barcos[x,y]]) < 1): 
+            print("Hundido barco de " ,self.tablero[x,y], " posiciones!")
         return len(self.tablero_barcos[self.tablero_barcos == self.tablero_barcos[x,y]]) < 1
 
     def getIndiceLetra(self,letra:str): #   
@@ -247,7 +214,6 @@ class Jugador:
     def getDisparo(self, x, y): #
         res = ""
         #la X puede ser una letra de la A a la J, lo contemplamos tambien
-        print(x, y, isinstance(x, str))
         if isinstance(x,str):
             if(x.isdigit()):
                 x = int(x)
@@ -259,10 +225,10 @@ class Jugador:
         if self.tablero[x,y] == "O" or self.tablero[x,y].isdigit():
             if self.todosHundidos():
                 res =  "fin de juego"
-            elif self.barcoTocado(x,y):
-                res =  "X"
             elif self.barcoHundido(x,y):
                 res = "XX"
+            elif self.barcoTocado(x,y):
+               res =  "X"
          
         else:
             res =  "-"
