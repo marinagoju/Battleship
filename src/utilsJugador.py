@@ -162,8 +162,8 @@ class Jugador:
 
             for x in range(10):
 
-                celda_barco = matriz_barcos[y][x]
-                celda_impactos = matriz_impactos[y][x]
+                celda_barco = matriz_barcos[y,x]
+                celda_impactos = matriz_impactos[y,x]
 
                 if not deberia_mostrar_barcos and celda_barco != " " and celda_barco != "-" and celda_barco != "X":
                     celda_barco = " "
@@ -188,22 +188,22 @@ class Jugador:
         self.imprimir_separador_horizontal()
         
 
-    def getDisparo(self, x, y): # Función que comprueba las coordenadas insertadas por el usuario y actualiza el tablero de impactos
+    def getDisparo(self, x:int, y:int): # Función que comprueba las coordenadas insertadas por el usuario y actualiza el tablero de impactos
         res = ""
 
-        if self.tablero[x][y] == "O" or self.tablero[x,y].isdigit(): # Comprueba si hay barco
+        if self.tablero[x,y] == "O" or self.tablero[x,y].isdigit(): # Comprueba si hay barco
             if self.todosHundidos():
                 res =  "fin de juego"
             elif self.barcoTocado(x,y):
                 res =  "X"
                 
-            elif self.barcoHundido(x,y): # Terminar de desarrollar...
+            elif self.barcoHundido(x,y):
                 res = "XX"
          
         else:
             res =  "-"
         
-        self.tablero_impactos[x][y] = res 
+        self.tablero_impactos[x,y] = res 
 
         return res # Devuelve esta variable para ir cambiando de turno en la clase Game
 
@@ -211,12 +211,12 @@ class Jugador:
         return len(np.where( self.tablero != "X")) == 0 
 
     def barcoTocado(self, x, y): # Expresión booleana para que identificar un barco tocado  
-        return self.tablero[x][y] == "O" or self.tablero[x,y].isdigit()
+        return self.tablero[x,y] == "O" or self.tablero[x,y].isdigit()
 
 
     def barcoHundido(self, x, y):  # Expresión booleana para que identificar un barco tocado y hundido - crear diccionario / clase barcos
         res = False
-        tamBarco = self.tablero[x][y]
+        tamBarco = self.tablero[x,y]
         if (tamBarco == 1):
             res = True
         else:
