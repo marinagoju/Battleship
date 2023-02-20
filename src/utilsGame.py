@@ -1,5 +1,5 @@
-from utils import Jugador
-from const import barcos, barcosNum
+from utilsJugador import Jugador
+from constants import barcos, barcosNum
 import numpy as np
 
 class Game: 
@@ -10,7 +10,6 @@ class Game:
         self.maquina = maquina
         self.jugador = jugador  
 
-
     def SalirInicio(self,exit_word:str): # Filtro input inicial para salir
         if exit_word.replace(" ","").upper() == "SALIR" or exit_word.replace(" ","").upper() =="NO":
             x2 = input("¿Estás seguro? Si sales abandonarás el barco (si/no):") # Doble check
@@ -18,6 +17,7 @@ class Game:
             if x2.replace(" ","").upper() == "SALIR" or x2.replace(" ","").upper() =="SI": 
                 print("\n","Esperábamos más de ti, grumete, pero se ve que no tenías la valía necesaria.","\n")
                 quit()
+        
 
     def GetIndiceLetra(self,x:str): # Función de utilidad para adquirir el indice de la letra.
 
@@ -34,10 +34,16 @@ class Game:
     def AskCoordx(self): # Filtro input de la coordenada x (str)
         loop = True
         while loop:
-
+            print("\n","- Capitán Sardino: Y bien grummete, ¿hacia donde disparamos?","\n")
             x = input("Coordenada del eje x (A a J):")
 
-            if x.replace(" ","").upper() == "SALIR": # Opcion para salir
+            if x.replace(" ","").upper() == "MOSTRARMAQUINA": # Comando para mostrar tableros de la maquina (cheat)
+                print(f"--------------------------------------------TABLEROS de {self.maquina.nombre}----------------------------------------------")
+                self.maquina.mostrarTableros()
+                print()
+                continue
+
+            if x.replace(" ","").upper() == "SALIR": # Comando para salir
                 x2 = input("¿Estás seguro? Si sales abandonarás el barco (si/no):") # Doble check
 
                 if x2.replace(" ","").upper() == "salir" or x2.replace(" ","").upper() =="SI": 
@@ -63,14 +69,19 @@ class Game:
                 print("\n","Coordenada Inválida. Prueba una letra de la A a la J.""\n",)
 
 
-                
     def AskCoordy(self): # Filtro input de la coordenada y (int)
         loop = True
         while loop:
-
+            print("\n","- Capitán Sardino: Y bien grummete, ¿hacia donde disparamos?","\n")
             y = input("Coordenada del eje y (1 al 10):")
 
-            if y.replace(" ","").upper() == "SALIR": # Opcion para salir
+            if y.replace(" ","").upper() == "MOSTRARMAQUINA": # Comando para mostrar tableros de la maquina (cheat)
+                print(f"--------------------------------------------TABLEROS de {self.maquina.nombre}----------------------------------------------")
+                self.maquina.mostrarTableros()
+                print()
+                continue
+
+            if y.replace(" ","").upper() == "SALIR": # Comando  para salir
                 y2 = input("¿Estás seguro? Si sales abandonarás el barco (si/no):") # Doble check
 
                 if y2.replace(" ","").upper() == "SALIR" or y2.replace(" ","").upper() =="SI": 
@@ -88,13 +99,12 @@ class Game:
             else:
                 print("\n","Coordenada Inválida. Prueba un número entero entre 1 y 10.""\n",)
     
-    # def CheckCoord(self,x,y): # Funcion de check Si dispara a la misma coordenada
-    #     while self.jugador.tablero_impactos[x][y] != " ": 
-    #         print("\n","-Capitán Sardino: MERLUZO! Ya hemos disparado a esa coordenada.","\n",)
-    #         x = self.AskCoordx()
-    #         y = self.AskCoordy()
+    def CheckCoord(self,x,y): # Funcion de check Si dispara a la misma coordenada
+        while self.jugador.tablero_impactos[x][y] != " ": 
+            print("\n","- Capitán Sardino: MERLUZO! Ya hemos disparado a esa coordenada.","\n",)
+            x = self.AskCoordx()
+            y = self.AskCoordy()
 
-   
 
     def Jugar(self): # FUNCIÓN QUE EJECUTA EL DESARROLLO DEL JUEGO
         
@@ -112,7 +122,7 @@ class Game:
                 y = self.AskCoordy()
                 #self.CheckCoord(x,y)
                 while self.jugador.tablero_impactos[x][y] != " " : # Check si dispara a la misma coordenada
-                    print("\n","-Capitán Sardino: MERLUZO! Ya hemos disparado a esa coordenada.","\n",)
+                    print("\n","- Capitán Sardino: MERLUZO! Ya hemos disparado a esa coordenada.","\n",)
                     x = self.AskCoordx()
                     y = self.AskCoordy()
 
@@ -173,4 +183,9 @@ class Game:
                         self.jugador.tablero[x][y] = "X" # Actualiza esa coordenada en el tablero de barcos del jugador
                         print("\n","* Impacto *                               - Capitán Sardino: Ouch!")
                         continue
+
+
+# TODO niveles de dificultad (Turno de la maquina x2)
+# TODO posicionar barcos de manera personalizada
+# TODO implementar tocado y hundido cuando se hunde un barco
                     

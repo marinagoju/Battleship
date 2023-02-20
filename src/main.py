@@ -1,6 +1,6 @@
-from utils import Jugador
-from Game import Game
-from const import barcos, barcosNum
+from utilsJugador import Jugador
+from utilsGame import Game
+from constants import barcos, barcosNum
 
 name = input("\n\n- Capitán Sardino: Bienvenido a bordo grumete, ¿Cuál es tu nombre?:")
 print(f'''
@@ -31,9 +31,9 @@ print("\n","Esa es la actitud!. Dicho esto, todos a sus puestos, ¡Arriad velas!
 
 print("\n","* Generando tableros y desplegando la flota... *","\n")
 
-jugador_grumete.initTablero()
-maquina.initTablero()
-for i, v in barcosNum.items():    
+jugador_grumete.initTablero() # Genera tablero del jugador
+maquina.initTablero() # Genera tablero de la maquina
+for i, v in barcosNum.items(): # Coloca barcos de ambos jugadores
     jugador_grumete.colocarBarcos(i,v)
     maquina.colocarBarcos(i,v)
     
