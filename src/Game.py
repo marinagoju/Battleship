@@ -37,7 +37,7 @@ class Game:
 
             x = input("Coordenada del eje x (A a J):")
 
-            if x.replace(" ","").upper() == "SALIR":
+            if x.replace(" ","").upper() == "SALIR": # Opcion para salir
                 x2 = input("¿Estás seguro? Si sales abandonarás el barco (si/no):") # Doble check
 
                 if x2.replace(" ","").upper() == "salir" or x2.replace(" ","").upper() =="SI": 
@@ -48,7 +48,7 @@ class Game:
                 else:
                     continue
 
-            elif x.replace(" ","").upper() in ["1","2","3","4","5","6","7","8","9","10"]:
+            elif x.replace(" ","").upper() in ["1","2","3","4","5","6","7","8","9","10"]: # Opcion de que se pueda introducir un numero en eje y
 
                 loop = False
                 return int(x)-1
@@ -64,13 +64,13 @@ class Game:
 
 
                 
-    def AskCoordy(self): # # Filtro input de la coordenada y (int)
+    def AskCoordy(self): # Filtro input de la coordenada y (int)
         loop = True
         while loop:
 
             y = input("Coordenada del eje y (1 al 10):")
 
-            if y.replace(" ","").upper() == "SALIR":
+            if y.replace(" ","").upper() == "SALIR": # Opcion para salir
                 y2 = input("¿Estás seguro? Si sales abandonarás el barco (si/no):") # Doble check
 
                 if y2.replace(" ","").upper() == "SALIR" or y2.replace(" ","").upper() =="SI": 
@@ -96,16 +96,7 @@ class Game:
 
    
 
-    def Jugar(self): # DESARROLLO DEL JUEGO
-        
-        print("\n","* Generando tableros y desplegando la flota... *","\n")
-
-        self.jugador.initTablero()
-        self.maquina.initTablero()
-        for i, v in barcosNum.items():    
-            self.jugador.colocarBarcos(i,v)
-            self.maquina.colocarBarcos(i,v)
- 
+    def Jugar(self): # FUNCIÓN QUE EJECUTA EL DESARROLLO DEL JUEGO
         
         while self.status: #  while True
             if self.turno:  
@@ -115,12 +106,12 @@ class Game:
                 # 3. si agua: turno = False ; si impacta: continue or status = False
                 
                 print("\n", f"--------------------------------------------TURNO de {self.jugador.nombre}----------------------------------------------") 
-                self.jugador.mostrarTableros()
+                self.jugador.mostrarTableros() # Muestra tablero al inicio del turno
                 print("\n","- Capitán Sardino: Y bien grummete, ¿hacia donde disparamos?","\n")
                 x = self.AskCoordx()
                 y = self.AskCoordy()
                 #self.CheckCoord(x,y)
-                while self.jugador.tablero_impactos[x][y] != " " : # WARNING si dispara a la misma coordenada
+                while self.jugador.tablero_impactos[x][y] != " " : # Check si dispara a la misma coordenada
                     print("\n","-Capitán Sardino: MERLUZO! Ya hemos disparado a esa coordenada.","\n",)
                     x = self.AskCoordx()
                     y = self.AskCoordy()
@@ -128,20 +119,21 @@ class Game:
                 print("\n","* Disparando a la flota enemiga...*")
 
                 res = self.jugador.getDisparo(x,y)    # Reemplaza coordenada y actualiza tablero_impactos jugador
+
                 if res == "-": # Si dispara en agua
-                    self.maquina.tablero[x][y] = res
+                    self.maquina.tablero[x][y] = res # Actualiza esa coordenada en el tablero de barcos de la maquina
                     self.turno = False
                     print("\n","* Fallo *                                 - Capitán Sardino: Fallamos!, arr. Más al loro grumete!")
                 
                 elif res == "fin de juego": # Si todo los barcos de maquina se hunden
-                    self.maquina.tablero[x][y] = res
+                    self.maquina.tablero[x][y] = res # Actualiza esa coordenada en el tablero de barcos de la maquina
                     self.status = False
                     print("\n","* Impacto *")
                     print("\n","* Barco tocado y hundido *                - Capitan Sardino: HurraAaAa! Hemos vencido!")
                     print("\n","Victoria magistral. Todos los barcos de la flota enemiga han sido derrotados.")
                     break
                 else: # Si impacta en un barco de maquina
-                    self.maquina.tablero[x][y] = "X"
+                    self.maquina.tablero[x][y] = "X" # Actualiza esa coordenada en el tablero de barcos de la maquina
                     print("\n","* Impacto *                              - Capitan Sardino: por las barbas de Neptuno. Buen disparo!") 
                     continue
 
@@ -157,27 +149,28 @@ class Game:
                 while self.turno == False: 
                     x = np.random.randint(10)
                     y = np.random.randint(10)
-                    while self.maquina.tablero_impactos[x][y] != " ":
+                    while self.maquina.tablero_impactos[x][y] != " ": # Check de no disparar a la misma coordenada
                         x = np.random.randint(10)
                         y = np.random.randint(10)
                     
                     print("\n","* Barco enemigo disparando... *")
 
                     res = self.maquina.getDisparo(x,y)  # Reemplaza coordenada en tablero_barcos del jugador
+
                     if res == "-": # Si dispara en agua
-                        self.jugador.tablero[x][y] = res
+                        self.jugador.tablero[x][y] = res # Actualiza esa coordenada en el tablero de barcos del jugador
                         self.turno = True
                         print("\n","* Fallo *                                 - Capitán Sardino: Eso estuvo cerca.")
                        
                     elif res == "fin de juego":  # Si todos los barcos del jugador se hunden
-                        self.jugador.tablero[x][y] = res
+                        self.jugador.tablero[x][y] = res # Actualiza esa coordenada en el tablero de barcos del jugador
                         self.status = False
                         print("\n","* Impacto *")
                         print("\n","* Barco tocado y hundido *                - Capitán Sardino: Gluglugluglu...")
                         print("\n","Derrota aplastante. Todos los barcos de tu flota se han ido a pique...")
                         break
                     else: # Si impacta en barco de jugador
-                        self.jugador.tablero[x][y] = "X"
+                        self.jugador.tablero[x][y] = "X" # Actualiza esa coordenada en el tablero de barcos del jugador
                         print("\n","* Impacto *                               - Capitán Sardino: Ouch!")
                         continue
                     

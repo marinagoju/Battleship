@@ -6,19 +6,18 @@ class Jugador:
     tablero_impactos = []   
     
       
-    def __init__(self, is_maquina, nombre):  # maquina -> bool   
+    def __init__(self, is_maquina, nombre):  # maquina (bool)-> indica si es maquina o no  ; nombre-> nombre del jugador 
         self.is_maquina = is_maquina
         self.nombre = nombre
        
     
         
-    def initTablero(self):        
+    def initTablero(self): # Función para inicializar tablero
         self.tablero = np.full((lenTablero,lenTablero), " ")
         self.tablero_impactos = np.full((lenTablero,lenTablero), " ")
              
 
-    def colocarBarcos(self, tamBarco, num):
-        #print("colocando", num , "barcos de ", tamBarco, "\n")
+    def colocarBarcos(self, tamBarco, num): # Función para colocar barcos en tablero
 
         def checkColision(tamBarco, x,y, orientacion):
             t = tamBarco 
@@ -116,12 +115,12 @@ class Jugador:
             return chr(ord(letra)+1)
   
 
-    def mostrarTableros(self): # Muestra ambos tableros de juego
+    def mostrarTableros(self): # Función que muestra ambos tableros de juego
         print("\n", f"            Tablero de barcos:                                           Tablero de impactos:", "\n")
         self.imprimir_tablero(self.tablero, self.tablero_impactos, True)
 
 
-    def imprimir_fila_de_numeros(self): # Crea las dos filas de numeros de ambos tableros
+    def imprimir_fila_de_numeros(self): # Funcion que crea las dos filas de numeros en tableros del jugador
         fila_de_numeros_doble = "|   "
         
         for x in range(10):
@@ -138,7 +137,7 @@ class Jugador:
         fila_de_numeros_doble += "|"
         print(fila_de_numeros_doble)
 
-    def imprimir_separador_horizontal(self): # Separadores horizontales de ambos tableros
+    def imprimir_separador_horizontal(self): # Funcion que crea eparadores horizontales de ambos tableros del jugador
         separador_doble = ""
         for _ in range(11):
             separador_doble += "+---"
@@ -148,13 +147,13 @@ class Jugador:
         separador_doble += "+"
         print(separador_doble)
 
-# IMPRESION TABLERO SIDE TO SIDE (cacharreo con codigo de aida)
+# IMPRESION TABLEROS SIDE BY SIDE (cacharreo con codigo de aida)
 # matriz_barcos: Numpy.ndarray con digitos que representa los barcos. 
 # matriz_impactos: Numpy.Array que representa los impactos en el contrario
 # deberia_mostrar_barcos: Booleano que representa si se deberían imprimirse barcos. 
 
 
-    def imprimir_tablero(self, matriz_barcos, matriz_impactos, deberia_mostrar_barcos):
+    def imprimir_tablero(self, matriz_barcos, matriz_impactos, deberia_mostrar_barcos): # Función que imprime dos tableros side by side
       
         for y, letra in enumerate(["A","B","C","D","E","F","G","H","I","J"]):
             self.imprimir_separador_horizontal()
@@ -189,10 +188,10 @@ class Jugador:
         self.imprimir_separador_horizontal()
         
 
-    def getDisparo(self, x, y):
+    def getDisparo(self, x, y): # Función que comprueba las coordenadas insertadas por el usuario y actualiza el tablero de impactos
         res = ""
 
-        if self.tablero[x][y] == "O" or self.tablero[x,y].isdigit():
+        if self.tablero[x][y] == "O" or self.tablero[x,y].isdigit(): # Comprueba si hay barco
             if self.todosHundidos():
                 res =  "fin de juego"
             elif self.barcoTocado(x,y):
@@ -204,9 +203,9 @@ class Jugador:
         else:
             res =  "-"
         
-        self.tablero_impactos[x][y] = res # Actualiza coordenada en tablero de impactos según sea tocado/agua
+        self.tablero_impactos[x][y] = res 
 
-        return res # Para in cambiando de turno en Game
+        return res # Devuelve esta variable para ir cambiando de turno en la clase Game
 
     def todosHundidos(self):  # Expresión booleana para que identificar un barco hundido    
         return len(np.where( self.tablero != "X")) == 0 
@@ -215,8 +214,7 @@ class Jugador:
         return self.tablero[x][y] == "O" or self.tablero[x,y].isdigit()
 
 
-    def barcoHundido(self, x, y):  # Expresión booleana para que identificar un barco tocado y hundido
-        #funcion a desarrollar si tenemos tiempo - crear diccionario / clase barcos
+    def barcoHundido(self, x, y):  # Expresión booleana para que identificar un barco tocado y hundido - crear diccionario / clase barcos
         res = False
         tamBarco = self.tablero[x][y]
         if (tamBarco == 1):

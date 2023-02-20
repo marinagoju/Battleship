@@ -28,4 +28,14 @@ hundir_la_flota.SalirInicio(exit)
 
 print("\n","Esa es la actitud!. Dicho esto, todos a sus puestos, ¡Arriad velas! !Alzad el ancla¡. La flota está a punto de zarpar...")
 
+
+print("\n","* Generando tableros y desplegando la flota... *","\n")
+
+jugador_grumete.initTablero()
+maquina.initTablero()
+for i, v in barcosNum.items():    
+    jugador_grumete.colocarBarcos(i,v)
+    maquina.colocarBarcos(i,v)
+    
+
 hundir_la_flota.Jugar() # Ejecuta el Juego. Desarrollo más detallado en la clase Game.
