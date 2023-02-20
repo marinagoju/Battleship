@@ -116,12 +116,12 @@ class Jugador:
             return chr(ord(letra)+1)
   
 
-    def mostrarTableros(self): # Muestra ambos tableros
+    def mostrarTableros(self): # Muestra ambos tableros de juego
         print("\n", f"            Tablero de barcos:                                           Tablero de impactos:", "\n")
         self.imprimir_tablero(self.tablero, self.tablero_impactos, True)
 
 
-    def imprimir_fila_de_numeros(self): # Crea dos filas de numeros de ambos tableros
+    def imprimir_fila_de_numeros(self): # Crea las dos filas de numeros de ambos tableros
         fila_de_numeros_doble = "|   "
         
         for x in range(10):
@@ -163,8 +163,8 @@ class Jugador:
 
             for x in range(10):
 
-                celda_barco = matriz_barcos[x][y]
-                celda_impactos = matriz_impactos[x][y]
+                celda_barco = matriz_barcos[y][x]
+                celda_impactos = matriz_impactos[y][x]
 
                 if not deberia_mostrar_barcos and celda_barco != " " and celda_barco != "-" and celda_barco != "X":
                     celda_barco = " "
@@ -191,38 +191,34 @@ class Jugador:
 
     def getDisparo(self, x, y):
         res = ""
-        print(x,y)
 
-        if self.tablero[x,y] == "O":
+        if self.tablero[x][y] == "O" or self.tablero[x,y].isdigit():
             if self.todosHundidos():
                 res =  "fin de juego"
             elif self.barcoTocado(x,y):
                 res =  "X"
-            elif self.barcoHundido(x,y):
+                
+            elif self.barcoHundido(x,y): # Terminar de desarrollar...
                 res = "XX"
          
         else:
             res =  "-"
         
-        self.setDisparo(x, y, res)
-        return res
+        self.tablero_impactos[x][y] = res # Actualiza coordenada en tablero de impactos según sea tocado/agua
 
+        return res # Para in cambiando de turno en Game
 
-    def todosHundidos(self):        
+    def todosHundidos(self):  # Expresión booleana para que identificar un barco hundido    
         return len(np.where( self.tablero != "X")) == 0 
 
-    def barcoTocado(self, x, y):
-        return self.tablero[x,y] == "O"
+    def barcoTocado(self, x, y): # Expresión booleana para que identificar un barco tocado  
+        return self.tablero[x][y] == "O" or self.tablero[x,y].isdigit()
 
 
-    def setDisparo(self, x, y, res): # coordenadas de disparo y actualizacion de estas en el tablero_impacto
-        self.tablero_impactos[x,y] = res
-
-
-    def barcoHundido(self, x, y):
+    def barcoHundido(self, x, y):  # Expresión booleana para que identificar un barco tocado y hundido
         #funcion a desarrollar si tenemos tiempo - crear diccionario / clase barcos
         res = False
-        tamBarco = self.tablero[x,y]
+        tamBarco = self.tablero[x][y]
         if (tamBarco == 1):
             res = True
         else:
