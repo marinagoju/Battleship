@@ -112,7 +112,7 @@ class Jugador:
                 tamBarco-=1            
             
             tamBarco = tam
-        print("tablero ", self.nombre , self.tablero,"\n", self.tablero_barcos)               
+        #print("tablero ", self.nombre , self.tablero,"\n", self.tablero_barcos)               
   
     def mostrarTableros(self):
         print("\n", f"            Tablero de barcos:                                           Tablero de impactos:", "\n")
