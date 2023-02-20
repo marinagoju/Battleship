@@ -105,15 +105,14 @@ class Jugador:
             #colocar barco
             #print("colocar barco", orientacion, x, y, tamBarco, tam)
             
-            while tamBarco:
-                print(tamBarco, "tambarco", tam, num )
+            while tamBarco:                
                 t = tamBarco -1                 
                 self.tablero[x+(coord[orientacion][0]*t), y+(t*coord[orientacion][1])] = tam
                 self.tablero_barcos[x+(coord[orientacion][0]*t), y+(t*coord[orientacion][1])] = str(tam) + str(num)
                 tamBarco-=1            
             
             tamBarco = tam
-        #print("tablero ", self.nombre , self.tablero,"\n", self.tablero_barcos)               
+        print("tablero ", self.nombre , self.tablero,"\n", self.tablero_barcos)               
   
     def mostrarTableros(self):
         print("\n", f"            Tablero de barcos:                                           Tablero de impactos:", "\n")
