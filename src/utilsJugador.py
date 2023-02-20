@@ -4,7 +4,7 @@ from constants import coord, barcos, lenTablero
 class Jugador:
     tablero = []
     tablero_impactos = []   
-    tablero_barcos = np.full((10,10),0) # tablero para comprobar si un barco está hundido, no se visualiza
+    tablero_barcos = [] # tablero para comprobar si un barco está hundido, no se visualiza
     lenTablero = 10
       
     def __init__(self, is_maquina, nombre):  # maquina -> bool   
@@ -16,7 +16,7 @@ class Jugador:
     def initTablero(self):        
         self.tablero = np.full((lenTablero,lenTablero), " ")
         self.tablero_impactos = np.full((lenTablero,lenTablero), " ")
-             
+        self.tablero_barcos = np.full((10,10),0)     
 
     def colocarBarcos(self, tamBarco, num):
         print("colocando", num , "barcos de ", tamBarco, "\n")
@@ -105,14 +105,15 @@ class Jugador:
             #colocar barco
             #print("colocar barco", orientacion, x, y, tamBarco, tam)
             
-            while tamBarco-1:
+            while tamBarco:
+                print(tamBarco, "tambarco", tam, num )
                 t = tamBarco -1                 
                 self.tablero[x+(coord[orientacion][0]*t), y+(t*coord[orientacion][1])] = tam
                 self.tablero_barcos[x+(coord[orientacion][0]*t), y+(t*coord[orientacion][1])] = str(tam) + str(num)
                 tamBarco-=1            
             
             tamBarco = tam
-            #print(self.tablero)               
+        #print("tablero ", self.nombre , self.tablero,"\n", self.tablero_barcos)               
   
     def mostrarTableros(self):
         print("\n", f"            Tablero de barcos:                                           Tablero de impactos:", "\n")
@@ -203,10 +204,10 @@ class Jugador:
         self.imprimir_fila_de_numeros()
         self.imprimir_separador_horizontal()
    
-    def barcoHundido(self, x, y):        
-        if (len(self.tablero_barcos[self.tablero_barcos == self.tablero_barcos[x,y]]) < 1): 
+    def barcoHundido(self, x, y):           
+        if (len(self.tablero_barcos[self.tablero_barcos == self.tablero_barcos[x,y]]) <= 1): 
             print("Hundido barco de " ,self.tablero[x,y], " posiciones!")
-        return len(self.tablero_barcos[self.tablero_barcos == self.tablero_barcos[x,y]]) < 1
+        return len(self.tablero_barcos[self.tablero_barcos == self.tablero_barcos[x,y]]) <= 1
 
     def getIndiceLetra(self,letra:str): #   
         return ord(letra.replace(" ", "").upper()) - 65
@@ -233,7 +234,7 @@ class Jugador:
         else:
             res =  "-"
         
-        self.setDisparo( x, y, res)
+        #self.setDisparo( x, y, res)
         return res 
 
     def setDisparo(self, x, y, res): # coordenadas de disparo y actualizacion de estas en el tablero_impacto

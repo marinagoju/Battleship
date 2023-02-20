@@ -128,7 +128,8 @@ class Game:
 
                 print("\n","* Disparando a la flota enemiga...*")
 
-                res = self.jugador.getDisparo(x,y)    # Reemplaza coordenada y actualiza tablero_impactos jugador
+                res = self.maquina.getDisparo(x,y)    # Reemplaza coordenada y actualiza tablero_impactos jugador
+                self.jugador.setDisparo(x,y,res)
 
                 if res == "-": # Si dispara en agua
                     self.maquina.tablero[x][y] = res # Actualiza esa coordenada en el tablero de barcos de la maquina
@@ -165,8 +166,8 @@ class Game:
                     
                     print("\n","* Barco enemigo disparando... *")
 
-                    res = self.maquina.getDisparo(x,y)  # Reemplaza coordenada en tablero_barcos del jugador
-
+                    res = self.jugador.getDisparo(x,y)  # Reemplaza coordenada en tablero_barcos del jugador
+                    self.maquina.setDisparo(x,y,res)
                     if res == "-": # Si dispara en agua
                         self.jugador.tablero[x][y] = res # Actualiza esa coordenada en el tablero de barcos del jugador
                         self.turno = True
