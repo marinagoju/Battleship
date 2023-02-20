@@ -148,15 +148,15 @@ class Jugador:
         separador_doble += "+"
         print(separador_doble)
 
-# IMPRESION TABLERO SIDE TO SIDE 
+# IMPRESION TABLERO SIDE TO SIDE (cacharreo con codigo de aida)
 # matriz_barcos: Numpy.ndarray con digitos que representa los barcos. 
 # matriz_impactos: Numpy.Array que representa los impactos en el contrario
-# deberia_mostrar_barcos: Booleano que representa y se deberían imprimirse barcos. 
-# jugador: ???
+# deberia_mostrar_barcos: Booleano que representa si se deberían imprimirse barcos. 
+
 
     def imprimir_tablero(self, matriz_barcos, matriz_impactos, deberia_mostrar_barcos):
       
-        for (y, letra) in zip(range(10), "ABCDEFGHIJ"):
+        for y, letra in enumerate(["A","B","C","D","E","F","G","H","I","J"]):
             self.imprimir_separador_horizontal()
             m_barcos_string: str = f"| {letra} "
             m_impactos_string: str = f"| {letra} "
