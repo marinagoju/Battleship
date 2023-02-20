@@ -224,7 +224,7 @@ class Jugador:
         return self.tablero[x,y] == "O" or self.tablero[x,y].isdigit()
 
     def todosHundidos(self):  # Expresión booleana para que identificar que todos los barcos han sido hundido s     
-        return len(np.where( self.tablero != "X")) == 0 
+        return len(np.where( self.tablero == "O")) == 0 
 
 
     
