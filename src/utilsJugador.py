@@ -203,9 +203,11 @@ class Jugador:
         self.imprimir_fila_de_numeros()
         self.imprimir_separador_horizontal()
    
-    def barcoHundido(self, x, y):           
+
+    def barcoHundido(self, x, y):                   
         if (len(self.tablero_barcos[self.tablero_barcos == self.tablero_barcos[x,y]]) <= 1): 
             print("Hundido barco de " ,self.tablero[x,y], " posiciones!")
+        self.tablero_barcos[x,y] = 0
         return len(self.tablero_barcos[self.tablero_barcos == self.tablero_barcos[x,y]]) <= 1
 
     def getIndiceLetra(self,letra:str): #   
@@ -233,7 +235,7 @@ class Jugador:
         else:
             res =  "-"
         
-        #self.setDisparo( x, y, res)
+        self.tablero[x,y] = res
         return res 
 
     def setDisparo(self, x, y, res): # coordenadas de disparo y actualizacion de estas en el tablero_impacto
