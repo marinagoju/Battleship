@@ -1,5 +1,4 @@
 from utilsJugador import Jugador
-from constants import barcos, barcosNum
 import numpy as np
 
 class Game: 

@@ -1,5 +1,5 @@
 import numpy as np
-from constants import coord, barcos, lenTablero
+from constants import coord, lenTablero
 
 class Jugador:
     tablero = []
