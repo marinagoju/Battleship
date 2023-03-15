@@ -60,5 +60,5 @@ Las dimensiones del tablero están definidas por la constante **lenTablero** que
 * https://note.nkmk.me/en/python-chr-ord-unicode-code-point/
 * https://www.canva.com/ (@sonisokell)
 * Otros recursos de Data Science The bridge.<br></br>
-### 📚 **4. Librerías de Python**<a name="id3"></a> ## 
+### **4. Librerías de Python**<a name="id3"></a> 📚 
 * Numpy<br></br>
