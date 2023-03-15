@@ -14,7 +14,7 @@ Para cualquier duda, aquí el enlace a nuestro perfil de gitHub.
 3. [Recursos](#id3) 
 4. [Librería de Python](#id4)<br></br>
 
-## 📜 1. Reglas del Juego 
+## 📜 1. Reglas del juego 
 El juego consta de dos jugadores. Un primer jugador que definimos como **la maquina**, y un segundo jugador que sería el mismo **usuario** que ejecuta el programa.
 
 El objetivo del juego consiste en hundir todos los barcos de la flota enemiga, sin que esta hunda antes los nuestros.
@@ -43,7 +43,7 @@ Cuando es el turno de "la maquina" se generan unas coordenadas aleatorias de dis
 
 Gana el jugador que antes consiga hundir los barcos del otro jugador.</div><br>
   
-## 🕹️ 2. Otras Funcionalidades
+## 🕹️ 2. Otras funcionalidades
 
 Hemos considerado que los barcos puedan estar ubicados juntos, es decir que pueda no haber espacios entre barcos. Aunque también se puede activar la función para que no puedan estar ubicados juntos. Esa parte del código está comentada para que no se ejecute, así que basta con descomentarla (línea 70 de utils.py).
 
