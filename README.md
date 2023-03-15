@@ -14,7 +14,7 @@ Para cualquier duda, aquí el enlace a nuestro perfil de gitHub.
 3. [Recursos](#id3) 
 4. [Librería de Python](#id4)<br></br>
 
-### 📜 **1. Reglas del Juego**<a name="id2"></a>
+### 📜 **1. Reglas del Juego**
 
 El juego consta de dos jugadores. Un primer jugador que definimos como **la maquina**, y un segundo jugador que sería el mismo **usuario** que ejecuta el programa.
 
@@ -46,14 +46,14 @@ Gana el jugador que antes consiga hundir los barcos del otro jugador.</div><br>
   
 ### 🕹️ **2. Otras Funcionalidades**<a name="id2"></a>
 ##
-<div style="text-align: justify">Hemos considerado que los barcos puedan estar ubicados juntos, es decir que pueda no haber espacios entre barcos. Aunque también se puede activar la función para que no puedan estar ubicados juntos. Esa parte del código está comentada para que no se ejecute, así que basta con descomentarla (línea 70 de utils.py).</div><br>
+Hemos considerado que los barcos puedan estar ubicados juntos, es decir que pueda no haber espacios entre barcos. Aunque también se puede activar la función para que no puedan estar ubicados juntos. Esa parte del código está comentada para que no se ejecute, así que basta con descomentarla (línea 70 de utils.py).
 
-<div style="text-align: justify">En un principio el juego está implementado de manera que hubiera un único jugador que jugara contra "la maquina", y que esta fuera respondiendo a los inputs que el jugador introduce por la terminal. Es por esto que los tableros del jugador "maquina" no se muestran. Pero podría modificarse para dos jugadores "humanos".</div><br>
+En un principio el juego está implementado de manera que hubiera un único jugador que jugara contra "la maquina", y que esta fuera respondiendo a los inputs que el jugador introduce por la terminal. Es por esto que los tableros del jugador "maquina" no se muestran. Pero podría modificarse para dos jugadores "humanos".
 
 Añadimos una **función de salir** en caso de que el jugador quiera salir del juego. Simplemente introduciendo 'salir' por consola.
 
 Las dimensiones del tablero están definidas por la constante **lenTablero** que podría ser modificada para ampliarlo o disminuirlo.<br>
-### ⚙️ **3. Recursos**<a name="id2"></a>
+### ⚙️ **3. Recursos**
 #
 * https://parzibyte.me/blog/2021/12/21/batalla-naval-python-programacion-juego/
 * https://pandao.github.io/editor.md/en.html
