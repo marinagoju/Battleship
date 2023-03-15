@@ -11,9 +11,9 @@ Para cualquier duda, aquí el enlace a nuestro perfil de gitHub.</div><br>
 
 1. [Reglas del Juego](#id1)
 2. [Funciones añadidas](#id2)
-3. [Recursos](#id3)
+3. [Recursos](#id3) 📜
 4. [Librería de Python](#id4)<br></br>
-### **Reglas del Juego**<a name="id1"></a> 📜 
+### **Reglas del Juego**<a name="id1"></a> 
 <div style="text-align: justify">El juego consta de dos jugadores. Un primer jugador que definimos como **"la maquina"**, y un segundo jugador que sería el mismo **usuario** que ejecuta el programa.
 
 El objetivo del juego consiste en hundir todos los barcos de la flota enemiga, sin que esta hunda antes los nuestros.
