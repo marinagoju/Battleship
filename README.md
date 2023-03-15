@@ -1,5 +1,5 @@
 ![imagen](./img/23.jpg)
-### <div align="center">**Bienvenidos a la flota de Caramarisal☠️**</div>
+## <div align="center">**Bienvenidos a la flota de Caramarisal☠️**</div>
 ***
 
 <div style="text-align: justify">Este proyecto surge a raíz de una actividad en la que se nos planteó la idea de desarrollar un videojuego basado en el clásico juego de barcos de Hundir La Flota.<br>
