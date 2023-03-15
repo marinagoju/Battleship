@@ -11,10 +11,10 @@ Para cualquier duda, aquí el enlace a nuestro perfil de gitHub.</div><br>
 
 1. [Reglas del Juego](#id1)
 2. [Funciones añadidas](#id2)
-3. [Recursos](#id3) 📜
+3. [Recursos](#id3) 
 4. [Librería de Python](#id4)<br></br>
 
-### Reglas del Juego
+### 📜 **1. Reglas del Juego**<a name="id2"></a>
 
 El juego consta de dos jugadores. Un primer jugador que definimos como **la maquina**, y un segundo jugador que sería el mismo **usuario** que ejecuta el programa.
 
