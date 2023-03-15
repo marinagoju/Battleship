@@ -41,7 +41,7 @@ Cuando es el turno de "la maquina" se generan unas coordenadas aleatorias de dis
 * Si "la maquina" impacta en un barco aliado, aparecerá **"X"** en la coordenada concreta del tablero de barcos del jugador, y disparará de nuevo.
 * Si "la maquina" impacta en el agua, aparecerá **"-"** en la coordenada concreta del tablero de barcos del jugador, y perderá el turno.
 
-Gana el jugador que antes consiga hundir los barcos del otro jugador.</div><br>
+Gana el jugador que antes consiga hundir los barcos del otro jugador.<br></br>
   
 ## 🕹️ 2. Otras funcionalidades
 
@@ -51,7 +51,7 @@ En un principio el juego está implementado de manera que hubiera un único juga
 
 Añadimos una **función de salir** en caso de que el jugador quiera salir del juego. Simplemente introduciendo 'salir' por consola.
 
-Las dimensiones del tablero están definidas por la constante **lenTablero** que podría ser modificada para ampliarlo o disminuirlo.<br>
+Las dimensiones del tablero están definidas por la constante **lenTablero** que podría ser modificada para ampliarlo o disminuirlo.<br></br>
 ## ⚙️ 3. Recursos
 * https://parzibyte.me/blog/2021/12/21/batalla-naval-python-programacion-juego/
 * https://pandao.github.io/editor.md/en.html
