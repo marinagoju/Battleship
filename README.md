@@ -42,7 +42,6 @@ Cuando es el turno de "la maquina" se generan unas coordenadas aleatorias de dis
 * Si "la maquina" impacta en el agua, aparecerá **"-"** en la coordenada concreta del tablero de barcos del jugador, y perderá el turno.
 
 Gana el jugador que antes consiga hundir los barcos del otro jugador.<br></br>
-  
 ## 🕹️ 2. Otras funcionalidades
 
 Hemos considerado que los barcos puedan estar ubicados juntos, es decir que pueda no haber espacios entre barcos. Aunque también se puede activar la función para que no puedan estar ubicados juntos. Esa parte del código está comentada para que no se ejecute, así que basta con descomentarla (línea 70 de utils.py).
