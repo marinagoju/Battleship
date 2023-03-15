@@ -52,7 +52,7 @@ Añadimos una **función de salir** en caso de que el jugador quiera salir del j
 
 Las dimensiones del tablero están definidas por la constante **lenTablero** que podría ser modificada para ampliarlo o disminuirlo.<br>
 ### ⚙️ **3. Recursos**<a name="id2"></a>
-#***
+#
 * https://parzibyte.me/blog/2021/12/21/batalla-naval-python-programacion-juego/
 * https://pandao.github.io/editor.md/en.html
 * https://www.delftstack.com/es/howto/python/python-exit-program/
@@ -60,5 +60,5 @@ Las dimensiones del tablero están definidas por la constante **lenTablero** que
 * https://note.nkmk.me/en/python-chr-ord-unicode-code-point/
 * https://www.canva.com/ (@sonisokell)
 * Otros recursos de Data Science The bridge.<br></br>
-### **4. Librerías de Python**<a name="id3"></a> 📚 
+#### 📚**4. Librerías de Python**<a name="id3"></a> 
 * Numpy<br></br>
