@@ -10,7 +10,7 @@ Para cualquier duda, aquí el enlace a nuestro perfil de gitHub.
 *Aída [@yporquenoahora](https://github.com/yporquenoahora)*<br></br>
 
 1. [Reglas del Juego](#id1)
-2. [Funciones añadidas](#id2)
+2. [Otras funcionalidades](#id2)
 3. [Recursos](#id3) 
 4. [Librería de Python](#id4)<br></br>
 
