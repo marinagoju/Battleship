@@ -16,6 +16,7 @@ Para cualquier duda, aquí el enlace a nuestro perfil de gitHub.
 
 <div id='id1'/>
 <h2> 📜 1. Reglas del juego</h2>
+
 El juego consta de dos jugadores. Un primer jugador que definimos como **la maquina**, y un segundo jugador que sería el mismo **usuario** que ejecuta el programa.
 
 El objetivo del juego consiste en hundir todos los barcos de la flota enemiga, sin que esta hunda antes los nuestros.
@@ -42,14 +43,16 @@ Cuando es el turno de "la maquina" se generan unas coordenadas aleatorias de dis
 * Si "la maquina" impacta en un barco aliado, aparecerá **"X"** en la coordenada concreta del tablero de barcos del jugador, y disparará de nuevo.
 * Si "la maquina" impacta en el agua, aparecerá **"-"** en la coordenada concreta del tablero de barcos del jugador, y perderá el turno.
 
-Gana el jugador que antes consiga hundir los barcos del otro jugador.<br></br>
+Gana el jugador que antes consiga hundir los barcos del otro jugador.
+
+<br></br>
 
 <div id='id2'/>
 <h2>🕹️ 2. Otras funcionalidades</h2>
 
 Hemos considerado que los barcos puedan estar ubicados juntos, es decir que pueda no haber espacios entre barcos. Aunque también se puede activar la función para que no puedan estar ubicados juntos. Esa parte del código está comentada para que no se ejecute, así que basta con descomentarla (línea 70 de utils.py).
 
-En un principio el juego está implementado de manera que hubiera un único jugador que jugara contra "la maquina", y que esta fuera respondiendo a los inputs que el jugador introduce por la terminal. Es por esto que los tableros del jugador "maquina" no se muestran. Pero podría modificarse para dos jugadores "humanos".
+En un principio el juego está implementado de manera que hubiera un único jugador que jugara contra 'la maquina', y que esta fuera respondiendo a los inputs que el jugador introduce por la terminal. Es por esto que los tableros del jugador 'maquina' no se muestran. Pero podría modificarse para dos jugadores 'humanos'.
 
 Añadimos una **función de salir** en caso de que el jugador quiera salir del juego. Simplemente introduciendo 'salir' por consola.
 
