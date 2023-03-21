@@ -44,9 +44,7 @@ Cuando es el turno de "la maquina" se generan unas coordenadas aleatorias de dis
 * Si "la maquina" impacta en el agua, aparecerá **"-"** en la coordenada concreta del tablero de barcos del jugador, y perderá el turno.
 
 Gana el jugador que antes consiga hundir los barcos del otro jugador.
-
 <br></br>
-
 <div id='id2'/>
 <h2>🕹️ 2. Otras funcionalidades</h2>
 
