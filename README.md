@@ -67,4 +67,5 @@ Las dimensiones del tablero están definidas por la constante **lenTablero** que
 
 <div id='id4'/>
 <h2> 📚 4. Librerías de Python</h2>
-* Numpy<br></br>
+
+* Numpy
