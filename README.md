@@ -57,13 +57,15 @@ Las dimensiones del tablero están definidas por la constante **lenTablero** que
 
 <div id='id3'/>
 <h2> ⚙️ 3. Recursos</h2>
+
 * https://parzibyte.me/blog/2021/12/21/batalla-naval-python-programacion-juego/
 * https://pandao.github.io/editor.md/en.html
 * https://www.delftstack.com/es/howto/python/python-exit-program/
 * http://es.battleship-game.org/
 * https://note.nkmk.me/en/python-chr-ord-unicode-code-point/
 * https://www.canva.com/ (@sonisokell)
-* Otros recursos de Data Science The bridge.<br></br>
+* Otros recursos de Data Science The bridge.
+<br></br>
 
 <div id='id4'/>
 <h2> 📚 4. Librerías de Python</h2>
