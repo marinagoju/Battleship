@@ -23,8 +23,8 @@ Pero antes de embarcarte hacia la batalla debes tener en cuenta las normas:
 
  · Se te solicitarán dos coordenadas para determinar la ubicación de disparo.
  · Tienes dos mapas: uno donde podrás ver la posición de tus barcos,y otro con las coordenadas de tus disparos lanzados.
- · Si el disparo ACIERTA aparecerá '-' en la ubicación.
- · Si el disparo NO ACIERTA aparecerá 'X' en la ubicación.
+ · Si el disparo ACIERTA aparecerá 'X' en la ubicación.
+ · Si el disparo NO ACIERTA aparecerá '-' en la ubicación.
  · Las flotas se componen de 10 barcos: 1 de 4 casillas, 2 de 3, 3 de 2 y 4 de 1 casilla. El primero que hunda los barcos del otro GANA.
  · Inserta el comando 'salir' si deseas abandonar la flota.
 ''')
